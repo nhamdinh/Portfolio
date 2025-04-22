@@ -1,997 +1,638 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="en">
   <head>
-    <!-- meta data -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <!--font-family-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whitecroft Gardens</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&amp;subset=devanagari,latin-ext"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"
     />
-
-    <!-- title of site -->
-    <title>JSON's Portfolio</title>
-
-    <!-- For favicon png -->
-    <link
-      rel="shortcut icon"
-      type="image/icon"
-      href="assets/logo/favicon.png"
-    />
-
-    <!--font-awesome.min.css-->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
-
-    <!--flat icon css-->
-    <link rel="stylesheet" href="assets/css/flaticon.css" />
-
-    <!--animate.css-->
-    <link rel="stylesheet" href="assets/css/animate.css" />
-
-    <!--owl.carousel.css-->
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
-
-    <!--bootstrap.min.css-->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-
-    <!-- bootsnav -->
-    <link rel="stylesheet" href="assets/css/bootsnav.css" />
-
-    <!--style.css-->
-    <link rel="stylesheet" href="assets/css/style.css" />
-
-    <!--responsive.css-->
-    <link rel="stylesheet" href="assets/css/responsive.css" />
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <style>
+      .header-scrolled {
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      #panorama {
+        width: 100%;
+        height: 500px;
+      }
+    </style>
   </head>
-  <body>
-    <!--[if lte IE 9]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
-        your experience and security.
-      </p>
-    <![endif]-->
-
-    <!-- top-area Start -->
-    <header class="top-area">
-      <div class="header-area">
-        <!-- Start Navigation -->
-        <nav
-          class="navbar navbar-default bootsnav navbar-fixed dark no-background"
-        >
-          <div class="container">
-            <!-- Start Header Navigation -->
-            <div class="navbar-header">
-              <button
-                type="button"
-                class="navbar-toggle"
-                data-toggle="collapse"
-                data-target="#navbar-menu"
-              >
-                <i class="fa fa-bars"></i>
-              </button>
-              <a class="navbar-brand" href="index.html">JSON</a>
-            </div>
-            <!--/.navbar-header-->
-            <!-- End Header Navigation -->
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div
-              class="collapse navbar-collapse menu-ui-design"
-              id="navbar-menu"
-            >
-              <ul
-                class="nav navbar-nav navbar-right"
-                data-in="fadeInDown"
-                data-out="fadeOutUp"
-              >
-                <li class="smooth-menu active"></li>
-                <li class="smooth-menu"><a href="#education">education</a></li>
-                <li class="smooth-menu"><a href="#skills">skills</a></li>
-                <li class="smooth-menu">
-                  <a href="#experience">experience</a>
-                </li>
-                <li class="smooth-menu"><a href="#profiles">profile</a></li>
-                <li class="smooth-menu"><a href="#portfolio">portfolio</a></li>
-<!--                 <li class="smooth-menu"><a href="#clients">clients</a></li>
- -->                <!-- 			                    <li class="smooth-menu"><a href="#contact">contact</a></li>
- -->
-              </ul>
-              <!--/.nav -->
-            </div>
-            <!-- /.navbar-collapse -->
-          </div>
-          <!--/.container-->
+  <body class="font-sans">
+    <!-- Header -->
+    <header
+      id="header"
+      class="fixed top-0 left-0 w-full z-10 transition-all duration-300"
+    >
+      <div
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <div class="text-xl font-bold text-gray-800">WHITECROFT GARDENS</div>
+        <nav class="hidden md:flex space-x-6">
+          <a href="#" class="text-gray-600 hover:text-gray-800">Location</a>
+          <a href="#" class="text-gray-600 hover:text-gray-800">Schools</a>
+          <a href="#" class="text-gray-600 hover:text-gray-800">Interiors</a>
+          <a href="#" class="text-gray-600 hover:text-gray-800">Floorplans</a>
+          <a href="#" class="text-gray-600 hover:text-gray-800">Enquire</a>
         </nav>
-        <!--/nav-->
-        <!-- End Navigation -->
+        <button class="md:hidden text-gray-600">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
       </div>
-      <!--/.header-area-->
-
-      <div class="clearfix"></div>
     </header>
-    <!-- /.top-area-->
-    <!-- top-area End -->
 
-    <!--welcome-hero start -->
-    <section id="welcome-hero" class="welcome-hero">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <div class="header-text">
-              <h2>
-                hi <span>,</span> i am <br />
-                JSON <span>.</span>
-              </h2>
-              <p>Full stack web developer</p>
-              <a href="assets/download/JSON.Full-stack-developer.pdf" download
-                >download resume</a
+    <!-- Banner 1 -->
+    <section class="h-screen flex flex-col md:flex-row">
+      <div class="w-full md:w-1/2 h-1/2 md:h-full">
+        <img
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+          alt="Interior"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div
+        class="w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center bg-gray-100 relative"
+      >
+        <div class="text-center p-6">
+          <h1 class="text-5xl md:text-6xl font-light text-gray-800 mb-4">
+            Interiors
+          </h1>
+          <p class="text-lg md:text-xl text-gray-600">
+            Modern Elegance in Every Detail
+          </p>
+        </div>
+        <div class="absolute inset-0 opacity-20">
+          <svg viewBox="0 0 200 200" class="w-full h-full">
+            <path
+              d="M10 100 Q 50 50, 100 100 T 190 100"
+              stroke="#d1b49f"
+              stroke-width="2"
+              fill="none"
+            />
+            <path
+              d="M30 120 Q 70 70, 120 120 T 170 120"
+              stroke="#d1b49f"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Banner 2 -->
+    <section
+      class="min-h-screen flex flex-col md:flex-row items-center bg-white py-12"
+    >
+      <div class="w-full md:w-1/2 p-6 md:p-12">
+        <h2
+          class="text-4xl md:text-5xl font-light text-gray-800 mb-4 leading-tight"
+        >
+          Beneath the captivating exteriors, discover interiors tailored for
+          contemporary living, featuring open-plan spaces bathed in natural
+          light.
+        </h2>
+        <p class="text-gray-600 mt-6 text-sm md:text-base">
+          Whitecroft Gardens epitomises exquisite living with its blend of
+          contemporary design and traditional elegance. Inside, discover bright,
+          open-plan spaces illuminated by natural light, featuring Whitened Oak
+          Herringbone flooring for a seamless flow. Each home has been
+          thoughtfully designed with future residents in mind, offering charm,
+          elegance, and comfort in every detail.
+        </p>
+      </div>
+      <div class="w-full md:w-1/2 h-96 md:h-full">
+        <img
+          src="https://cdn.hita.com.vn/storage/blog/meo-vat-gia-dinh/anh-ngoi-nha-15.jpg"
+          alt="Living Room"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </section>
+    <!-- Banner 3 -->
+    <section
+      class="min-h-screen flex flex-col md:flex-row items-center bg-white py-12"
+    >
+      <div class="w-full md:w-2/2 h-96 md:h-full">
+        <img
+          src="https://cdn.hita.com.vn/storage/blog/meo-vat-gia-dinh/anh-ngoi-nha-15.jpg"
+          alt="Living Room"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </section>
+    <!-- Banner 4 -->
+    <section
+      class="min-h-screen flex flex-col md:flex-row items-center bg-white py-12"
+    >
+      <div class="w-full md:w-1/2 p-6 md:p-12">
+        <div class="mb-8">
+          <p class="text-gray-600 text-sm md:text-base">
+            Each bedroom has been designed with the utmost attention to detail,
+            featuring handpicked products and elegant sanctuary spaces
+            complemented by a curated colour palette from the Empire Osea®
+            collection. Created to pay homage to Milan, one of Italy's most
+            beautiful cities and a hub of fashion and design, where every
+            street, square, and building evokes beauty and history, the Empire
+            Osea® collection is inspired by Milan's premium pre-fall porter
+            fashion and harmoniously blends design and functionality.
+          </p>
+          <p class="text-gray-600 text-sm md:text-base mt-4">
+            Most bathrooms include Laufen vanities, while primary suites boast
+            bespoke dual sink vanity units. Fully tiled, marble-inspired primary
+            bathrooms merge convenience with elegance. Detached homes also enjoy
+            the added luxury of freestanding baths and separate showers,
+            creating tranquil retreats. Additionally, each home features a
+            downstairs guest WC, enhancing functionality and comfort.
+          </p>
+        </div>
+        <div class="w-full h-64 md:h-96">
+          <img
+            src="https://images.unsplash.com/photo-1615873968403-89e068629265?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+            alt="Bathroom"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+      <div class="w-full md:w-1/2 h-96 md:h-full">
+        <img
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+          alt="Bedroom"
+          class="w-full h-full object-cover"
+        />
+        <p class="text-gray-500 text-xs md:text-sm mt-4 italic">
+          Step into the epitome of rest and relaxation, where each bedroom has
+          been designed to maximise comfort and luxury. Primary suites boast
+          spacious walk-in dressing areas and en-suite bathrooms, enhancing both
+          convenience and sophistication. Each primary bedroom is adorned with
+          bespoke wardrobes and selected bedrooms have special accents in such
+          as bespoke wallpaper and fluted panelled walls, complemented by plush,
+          soft carpeting.
+        </p>
+      </div>
+    </section>
+    <!-- VR Tour Section -->
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-light text-gray-800 mb-6">
+          Explore our VR tour
+        </h2>
+        <div id="panorama"></div>
+      </div>
+    </section>
+
+    <!-- Specification Section -->
+    <section class="py-12 bg-gray-100">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-light text-gray-800 mb-8">
+          Specification
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <details class="mb-4">
+              <summary
+                class="flex justify-between items-center text-lg font-medium text-gray-800 cursor-pointer"
               >
-            </div>
-            <!--/.header-text-->
+                Interior Finishes
+                <svg
+                  class="w-5 h-5 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </summary>
+              <div class="mt-2 text-gray-600 text-sm"></div>
+            </details>
+            <details class="mb-4">
+              <summary
+                class="flex justify-between items-center text-lg font-medium text-gray-800 cursor-pointer"
+              >
+                Kitchens
+                <svg
+                  class="w-5 h-5 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </summary>
+              <div class="mt-2 text-gray-600 text-sm"></div>
+            </details>
+            <details class="mb-4">
+              <summary
+                class="flex justify-between items-center text-lg font-medium text-gray-800 cursor-pointer"
+              >
+                Utility
+                <svg
+                  class="w-5 h-5 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </summary>
+              <div class="mt-2 text-gray-600 text-sm"></div>
+            </details>
+            <details class="mb-4">
+              <summary
+                class="flex justify-between items-center text-lg font-medium text-gray-800 cursor-pointer"
+              >
+                Bedrooms
+                <svg
+                  class="w-5 h-5 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </summary>
+              <div class="mt-2 text-gray-600 text-sm"></div>
+            </details>
+            <details class="mb-4">
+              <summary
+                class="flex justify-between items-center text-lg font-medium text-gray-800 cursor-pointer"
+              >
+                Bathrooms & WC
+                <svg
+                  class="w-5 h-5 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </summary>
+              <div class="mt-2 text-gray-600 text-sm"></div>
+            </details>
           </div>
-          <!--/.col-->
+          <div>
+            <details class="mb-4">
+              <summary
+                class="flex justify-between items-center text-lg font-medium text-gray-800 cursor-pointer"
+              >
+                Electrical & Heating
+                <svg
+                  class="w-5 h-5 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </summary>
+              <div class="mt-2 text-gray-600 text-sm"></div>
+            </details>
+            <details class="mb-4">
+              <summary
+                class="flex justify-between items-center text-lg font-medium text-gray-800 cursor-pointer"
+              >
+                Exterior Finishes
+                <svg
+                  class="w-5 h-5 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </summary>
+              <div class="mt-2 text-gray-600 text-sm"></div>
+            </details>
+            <details class="mb-4">
+              <summary
+                class="flex justify-between items-center text-lg font-medium text-gray-800 cursor-pointer"
+              >
+                Home Automation & Security
+                <svg
+                  class="w-5 h-5 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </summary>
+              <div class="mt-2 text-gray-600 text-sm"></div>
+            </details>
+            <details class="mb-4">
+              <summary
+                class="flex justify-between items-center text-lg font-medium text-gray-800 cursor-pointer"
+              >
+                Peace of mind
+                <svg
+                  class="w-5 h-5 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </summary>
+              <div class="mt-2 text-gray-600 text-sm"></div>
+            </details>
+            <details class="mb-4">
+              <summary
+                class="flex justify-between items-center text-lg font-medium text-gray-800 cursor-pointer"
+              >
+                Disclaimer
+                <svg
+                  class="w-5 h-5 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </summary>
+              <div class="mt-2 text-gray-600 text-sm"></div>
+            </details>
+          </div>
         </div>
-        <!-- /.row-->
+        <p class="text-gray-500 text-xs mt-8 italic">
+          *Show home features and fittings available by separate negotiation.
+        </p>
       </div>
-      <!-- /.container-->
     </section>
-    <!--/.welcome-hero-->
-    <!--welcome-hero end -->
-
-    <!--about start -->
-    <section id="about" class="about">
-      <div class="section-heading text-center">
-        <h2>about me</h2>
-      </div>
-      <div class="container">
-        <div class="about-content">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="single-about-txt">
-                <h3>
-                  With nearly over 5 years of working as a Software developer at
-                  IT global companies, I’m confident about my technical skills
-                  and my soft skills.
-                </h3>
-                <p>
-                  Improving my technical skills let me recognize that my
-                  strengths lay in my carefulness, discipline and friendly
-                  communication. I believe that if we want to work effectively
-                  and develop ourselves, discipline is very important for reach
-                  the target following the schedule.
-                </p>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="single-about-add-info">
-                      <h3>phone</h3>
-                      <p>(+84)943.090.090</p>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="single-about-add-info">
-                      <h3>email</h3>
-                      <p>nhamdinh.dev@gmail.com</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-offset-1 col-sm-5">
-              <div class="single-about-img">
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="relative">
+          <!-- Slider -->
+          <div class="overflow-hidden">
+            <div class="flex transition-transform duration-500" id="slider">
+              <div class="min-w-full">
                 <img
-                  src="assets/images/about/profile_image.jpg"
-                  alt="profile_image"
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+                  alt="Slide 1"
+                  class="w-full h-96 object-cover"
                 />
-
-                <!-- /.about-list-icon -->
+              </div>
+              <div class="min-w-full">
+                <img
+                  src="https://images.unsplash.com/photo-1618221710640-c1eaaa92385d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+                  alt="Slide 2"
+                  class="w-full h-96 object-cover"
+                />
+              </div>
+              <div class="min-w-full">
+                <img
+                  src="https://images.unsplash.com/photo-1615873968403-89e068629265?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+                  alt="Slide 3"
+                  class="w-full h-96 object-cover"
+                />
               </div>
             </div>
           </div>
+          <!-- Navigation Arrows -->
+          <button
+            id="prev"
+            class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              ></path>
+            </svg>
+          </button>
+          <button
+            id="next"
+            class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              ></path>
+            </svg>
+          </button>
         </div>
       </div>
     </section>
-    <!--/.about-->
-    <!--about end -->
 
-    <!--education start -->
-    <section id="education" class="education">
-      <div class="section-heading text-center">
-        <h2>education</h2>
-      </div>
-      <div class="container">
-        <div class="education-horizontal-timeline">
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="single-horizontal-timeline">
-                <div class="experience-time">
-                  <h2>2022 - 2023</h2>
-                  <h3>Web <span>Developer </span> Full-stack</h3>
-                </div>
-                <!--/.experience-time-->
-                <div class="timeline-horizontal-border">
-                  <i class="fa fa-circle" aria-hidden="true"></i>
-                  <span class="single-timeline-horizontal"></span>
-                </div>
+    <!-- Spacer for scrolling effect -->
+    <!-- <div class="h-[200vh]"></div> -->
 
-                <div class="timeline">
-                  <div class="timeline-content">
-                    <h4 class="title">FUNiX-FPT</h4>
-                    <h5>HaNoi, VN</h5>
-                    <p class="description">
-                      FUNiX is Vietnam’s first online university and a
-                      subsidiary of FPT Corporation (the largest information
-                      technology corporation in Vietnam). FUNiX provides basic
-                      to advanced information technology courses for developers.
-                    </p>
-                  </div>
-                  <!--/.timeline-content-->
-                </div>
-                <!--/.timeline-->
-              </div>
-            </div>
+    <script>
+      window.addEventListener("scroll", () => {
+        const header = document.getElementById("header");
+        if (window.scrollY > 50) {
+          header.classList.add("header-scrolled");
+        } else {
+          header.classList.remove("header-scrolled");
+        }
+      });
+      // Initialize Pannellum for 360-degree view
+      pannellum.viewer("panorama", {
+        type: "equirectangular",
+        panorama: "https://pannellum.org/images/alma.jpg", // Replace with your 360-degree image URL
+        autoLoad: true,
+        autoRotate: -2,
+        showControls: true,
+      });
 
-            <div class="col-sm-4">
-              <div class="single-horizontal-timeline">
-                <div class="experience-time">
-                  <h2>2021 - 2023</h2>
-                  <h3>bachelor <span>of </span> computer science</h3>
-                </div>
-                <!--/.experience-time-->
-                <div class="timeline-horizontal-border">
-                  <i class="fa fa-circle" aria-hidden="true"></i>
-                  <span class="single-timeline-horizontal"></span>
-                </div>
-                <div class="timeline">
-                  <div class="timeline-content">
-                    <h4 class="title">HaNoi Open University</h4>
-                    <h5>HaNoi, VN</h5>
-                    <p class="description">
-                      Hanoi Open University (HOU) in Vietnam was established by
-                      the Vietnamese Prime Minister on 1993, to meet the
-                      diversified educational needs of the Vietnamese people.
-                      HOU is a public higher education institution with many
-                      levels, many branches, and many fields with high autonomy
-                      and self-responsibility in the Vietnamese education
-                      system.
-                    </p>
-                  </div>
+      const slider = document.getElementById("slider");
+      const prev = document.getElementById("prev");
+      const next = document.getElementById("next");
+      let currentIndex = 0;
+      const slides = slider.children.length;
 
-                  <!--/.timeline-content-->
-                </div>
-                <!--/.timeline-->
-              </div>
-            </div>
+      function updateSlider() {
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
 
-            <div class="col-sm-4">
-              <div class="single-horizontal-timeline">
-                <div class="experience-time">
-                  <h2>2013 - 2019</h2>
-                  <h3>Preventive <span>Medicine </span> Doctor</h3>
-                </div>
-                <!--/.experience-time-->
-                <div class="timeline-horizontal-border">
-                  <i class="fa fa-circle" aria-hidden="true"></i>
-                  <span
-                    class="single-timeline-horizontal spacial-horizontal-line"
-                  ></span>
-                </div>
-                <div class="timeline">
-                  <div class="timeline-content">
-                    <h4 class="title">HaNoi Medical University</h4>
-                    <h5>HaNoi, VN</h5>
-                    <p class="description">
-                      Hanoi Medical University (HMU) is the oldest university of
-                      Vietnam and is located in Hanoi. HMU was founded in 1902
-                      by French during the French colonisation under the name
-                      Indochina Medical College.HMU is considered the most
-                      prestigious medical university in Vietnam, known for its
-                      highly competitive entrance exam.
-                    </p>
-                  </div>
-                  <!--/.timeline-content-->
-                </div>
-                <!--/.timeline-->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--/.education-->
-    <!--education end -->
+      prev.addEventListener("click", () => {
+        currentIndex = currentIndex > 0 ? currentIndex - 1 : slides - 1;
+        updateSlider();
+      });
 
-    <!--skills start -->
-    <section id="skills" class="skills">
-      <div class="skill-content">
-        <div class="section-heading text-center">
-          <h2>technologies - skills</h2>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="single-skill-content">
-                <div class="barWrapper">
-                  <span class="progressText">ReactJS</span>
-                  <div class="single-progress-txt">
-                    <div class="progress">
-                      <div
-                        class="progress-bar"
-                        role="progressbar"
-                        aria-valuenow="100"
-                        aria-valuemin="10"
-                        aria-valuemax="100"
-                        style=""
-                      ></div>
-                    </div>
-                    <h3></h3>
-                  </div>
-                </div>
-                <!-- /.barWrapper -->
-                <div class="barWrapper">
-                  <span class="progressText">NextJS</span>
-                  <div class="single-progress-txt">
-                    <div class="progress">
-                      <div
-                        class="progress-bar"
-                        role="progressbar"
-                        aria-valuenow="100"
-                        aria-valuemin="10"
-                        aria-valuemax="100"
-                        style=""
-                      ></div>
-                    </div>
-                    <h3></h3>
-                  </div>
-                </div>
-                <!-- /.barWrapper -->
-                <div class="barWrapper">
-                  <span class="progressText">VueJS</span>
-                  <div class="single-progress-txt">
-                    <div class="progress">
-                      <div
-                        class="progress-bar"
-                        role="progressbar"
-                        aria-valuenow="100"
-                        aria-valuemin="10"
-                        aria-valuemax="100"
-                        style=""
-                      ></div>
-                    </div>
-                    <h3></h3>
-                  </div>
-                </div>
-                <!-- /.barWrapper -->
-                <div class="barWrapper">
-                  <span class="progressText">html - css</span>
-                  <div class="single-progress-txt">
-                    <div class="progress">
-                      <div
-                        class="progress-bar"
-                        role="progressbar"
-                        aria-valuenow="100"
-                        aria-valuemin="10"
-                        aria-valuemax="100"
-                        style=""
-                      ></div>
-                    </div>
-                    <h3></h3>
-                  </div>
-                </div>
-                <!-- /.barWrapper -->
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="single-skill-content">
-                <div class="barWrapper">
-                  <span class="progressText"> NodeJS</span>
-                  <div class="single-progress-txt">
-                    <div class="progress">
-                      <div
-                        class="progress-bar"
-                        role="progressbar"
-                        aria-valuenow="100"
-                        aria-valuemin="10"
-                        aria-valuemax="100"
-                        style=""
-                      ></div>
-                    </div>
-                    <h3></h3>
-                  </div>
-                </div>
-                <!-- /.barWrapper -->
-                <div class="barWrapper">
-                  <span class="progressText">MongoDB</span>
-                  <div class="single-progress-txt">
-                    <div class="progress">
-                      <div
-                        class="progress-bar"
-                        role="progressbar"
-                        aria-valuenow="100"
-                        aria-valuemin="10"
-                        aria-valuemax="100"
-                        style=""
-                      ></div>
-                    </div>
-                    <h3></h3>
-                  </div>
-                </div>
-                <!-- /.barWrapper -->
-                <div class="barWrapper">
-                  <span class="progressText">Google Cloud</span>
-                  <div class="single-progress-txt">
-                    <div class="progress">
-                      <div
-                        class="progress-bar"
-                        role="progressbar"
-                        aria-valuenow="100"
-                        aria-valuemin="10"
-                        aria-valuemax="100"
-                        style=""
-                      ></div>
-                    </div>
-                    <h3></h3>
-                  </div>
-                </div>
-                <!-- /.barWrapper -->
-                <div class="barWrapper">
-                  <span class="progressText"> communication</span>
-                  <div class="single-progress-txt">
-                    <div class="progress">
-                      <div
-                        class="progress-bar"
-                        role="progressbar"
-                        aria-valuenow="100"
-                        aria-valuemin="10"
-                        aria-valuemax="100"
-                        style=""
-                      ></div>
-                    </div>
-                    <h3></h3>
-                  </div>
-                </div>
-                <!-- /.barWrapper -->
-              </div>
-            </div>
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.container -->
-      </div>
-      <!-- /.skill-content-->
-    </section>
-    <!--/.skills-->
-    <!--skills end -->
+      next.addEventListener("click", () => {
+        currentIndex = currentIndex < slides - 1 ? currentIndex + 1 : 0;
+        updateSlider();
+      });
+      const panoramas = [
+        {
+          url: "https://pannellum.org/images/alma.jpg",
+          hotspots: [
+            { position: { top: "50%", left: "10%" }, target: 1 },
+            { position: { top: "50%", right: "10%" }, target: 2 },
+            { position: { top: "33%", right: "33%" }, target: 3 },
+          ],
+        },
+        {
+          url: "https://pannellum.org/images/alma.jpg",
+          hotspots: [
+            { position: { top: "50%", left: "10%" }, target: 0 },
+            { position: { top: "50%", right: "10%" }, target: 2 },
+            { position: { top: "33%", right: "33%" }, target: 4 },
+          ],
+        },
+        {
+          url: "https://pannellum.org/images/alma.jpg",
+          hotspots: [
+            { position: { top: "50%", left: "10%" }, target: 0 },
+            { position: { top: "50%", right: "10%" }, target: 1 },
+            { position: { top: "33%", right: "33%" }, target: 3 },
+          ],
+        },
+        {
+          url: "https://pannellum.org/images/alma.jpg",
+          hotspots: [
+            { position: { top: "50%", left: "10%" }, target: 1 },
+            { position: { top: "50%", right: "10%" }, target: 2 },
+            { position: { top: "33%", right: "33%" }, target: 4 },
+          ],
+        },
+        {
+          url: "https://pannellum.org/images/alma.jpg",
+          hotspots: [
+            { position: { top: "50%", left: "10%" }, target: 0 },
+            { position: { top: "50%", right: "10%" }, target: 2 },
+            { position: { top: "33%", right: "33%" }, target: 3 },
+          ],
+        },
+      ];
 
-    <!--experience start -->
-    <section id="experience" class="experience">
-      <div class="section-heading text-center">
-        <h2>experience</h2>
-      </div>
-      <div class="container">
-        <div class="experience-content">
-          <div class="main-timeline">
-            <ul>
-              <li>
-                <div class="single-timeline-box fix">
-                  <div class="row">
-                    <div
-                      class="col-md-offset-1 col-md-5 experience-time-responsive"
-                    >
-                      <div class="experience-time">
-                        <h2>
-                          <span
-                            ><i class="fa fa-circle" aria-hidden="true"></i
-                          ></span>
-                          2022 - Present
-                        </h2>
-                        <h3>Full Stack Developer</h3>
-                      </div>
-                      <!--/.experience-time-->
-                    </div>
-                    <!--/.col-->
-                    <div class="col-md-5">
-                      <div class="timeline">
-                        <div class="timeline-content text-right">
-                          <h4 class="title">UPTEMPO VIETNAM</h4>
-                          <h5>Hanoi, VN</h5>
-                          <strong class="description">
-                            ● PROJECT : Shopee Ecommerce
-                            <br />
-                            • Demo Link:
-                            <a
-                              target="_blank"
-                              href="https://www.youtube.com/watch?v=KYlP5_BgI9k"
-                              >https://www.youtube.com/watch?v=KYlP5_BgI9k</a
-                            >
-                            <a
-                              target="_blank"
-                              href="https://www.youtube.com/watch?v=4WIoB9gSLe8"
-                              >https://www.youtube.com/watch?v=4WIoB9gSLe8</a
-                            >
-                          </strong>
-                        </div>
-                        <!--/.timeline-content-->
-                      </div>
-                      <!--/.timeline-->
-                    </div>
-                    <!--/.col-->
-                    <div class="col-md-offset-1 col-md-5 experience-time-main">
-                      <div class="experience-time">
-                        <h2>
-                          <span
-                            ><i class="fa fa-circle" aria-hidden="true"></i
-                          ></span>
-                          2022 - Present
-                        </h2>
-                        <h3>Full Stack Developer</h3>
-                      </div>
-                      <!--/.experience-time-->
-                    </div>
-                    <!--/.col-->
-                  </div>
-                </div>
-                <!--/.single-timeline-box-->
-              </li>
+      let currentPanoramaIndex = 0;
+      let viewer;
 
-              <li>
-                <div class="single-timeline-box fix">
-                  <div class="row">
-                    <div class="col-md-5">
-                      <div class="experience-time text-right">
-                        <h2>2021 - Present</h2>
-                        <h3>Middle Frontend Developer</h3>
-                      </div>
-                      <!--/.experience-time-->
-                    </div>
-                    <!--/.col-->
-                    <div class="col-md-offset-1 col-md-5">
-                      <div class="timeline">
-                        <div class="timeline-content">
-                          <h4 class="title">
-                            <span
-                              ><i class="fa fa-circle" aria-hidden="true"></i
-                            ></span>
-                            UPTEMPO VIETNAM
-                          </h4>
+      function initializePanorama(index) {
+        currentPanoramaIndex = index;
 
-                          <h5>Hanoi, VN</h5>
+        // Destroy previous viewer if exists
+        if (viewer) {
+          viewer.destroy();
+        }
 
-                          <strong class="description">
-                            ● PROJECT : BaechaKing
-                            <br />
-                            • Client-Link:
-                            <a target="_blank" href="https://hklogistics.kr/"
-                              >https://hklogistics.kr/</a
-                            >
-                          </strong>
-                        </div>
-                        <!--/.timeline-content-->
-                      </div>
-                      <!--/.timeline-->
-                    </div>
-                    <!--/.col-->
-                  </div>
-                </div>
-                <!--/.single-timeline-box-->
-              </li>
+        // Initialize Pannellum viewer
+        viewer = pannellum.viewer("panorama", {
+          type: "equirectangular",
+          panorama: panoramas[index].url,
+          autoLoad: true,
+          autoRotate: -2,
+          showControls: true,
+        });
 
-              <li>
-                <div class="single-timeline-box fix">
-                  <div class="row">
-                    <div
-                      class="col-md-offset-1 col-md-5 experience-time-responsive"
-                    >
-                      <div class="experience-time">
-                        <h2>
-                          <span
-                            ><i class="fa fa-circle" aria-hidden="true"></i
-                          ></span>
-                          2021 - Present
-                        </h2>
-                        <h3>Middle Frontend Developer</h3>
-                      </div>
-                      <!--/.experience-time-->
-                    </div>
-                    <!--/.col-->
-                    <div class="col-md-5">
-                      <div class="timeline">
-                        <div class="timeline-content text-right">
-                          <h4 class="title">UPTEMPO VIETNAM</h4>
-                          <h5>Hanoi, VN</h5>
-                          <p class="description">
-                            • a subsidiary of Uptempo Global - Korea.
-                          </p>
-                          <p class="description">
-                            • providing web and mobile programming services for
-                            the Korean market.
-                          </p>
-                          <strong class="description">
-                            ● PROJECT : Korcha Ecommerce
-                            <br />
-                            • Client-Link:
-                            <a target="_blank" href="https://www.korcha.shop"
-                              >https://www.korcha.shop</a
-                            >
-                          </strong>
-                        </div>
-                        <!--/.timeline-content-->
-                      </div>
-                      <!--/.timeline-->
-                    </div>
-                    <!--/.col-->
-                    <div class="col-md-offset-1 col-md-5 experience-time-main">
-                      <div class="experience-time">
-                        <h2>
-                          <span
-                            ><i class="fa fa-circle" aria-hidden="true"></i
-                          ></span>
-                          2021 - Present
-                        </h2>
-                        <h3>Middle Frontend Developer</h3>
-                      </div>
-                      <!--/.experience-time-->
-                    </div>
-                    <!--/.col-->
-                  </div>
-                </div>
-                <!--/.single-timeline-box-->
-              </li>
+        // Add hotspots (icons) dynamically
+        const iconsContainer = document.getElementById("icons");
+        iconsContainer.innerHTML = ""; // Clear previous icons
 
-              <li>
-                <div class="single-timeline-box fix">
-                  <div class="row">
-                    <div class="col-md-5">
-                      <div class="experience-time text-right">
-                        <h2>2020 - 2021</h2>
-                        <h3>Backend Developer</h3>
-                      </div>
-                      <!--/.experience-time-->
-                    </div>
-                    <!--/.col-->
-                    <div class="col-md-offset-1 col-md-5">
-                      <div class="timeline">
-                        <div class="timeline-content">
-                          <h4 class="title">
-                            <span
-                              ><i class="fa fa-circle" aria-hidden="true"></i
-                            ></span>
-                            LOTTE DATA COMMUNICATION VIETNAM (LDCC)
-                          </h4>
-                          <h5>Hanoi, VN</h5>
-                          <p class="description">
-                            • a subsidiary of LOTTE Global - Korea.
-                          </p>
-                          <p class="description">
-                            • providing web and mobile programming services for
-                            the finance market in VN.
-                          </p>
-                          <strong class="description">
-                            ● PROJECT : Maintain Core Banking System(AGRIBANK :
-                            Big4 Banking in VietNam)
-                          </strong>
-                        </div>
-                        <!--/.timeline-content-->
-                      </div>
-                      <!--/.timeline-->
-                    </div>
-                    <!--/.col-->
-                  </div>
-                </div>
-                <!--/.single-timeline-box-->
-              </li>
-            </ul>
-          </div>
-          <!--.main-timeline-->
-        </div>
-        <!--.experience-content-->
-      </div>
-    </section>
-    <!--/.experience-->
-    <!--experience end -->
+        panoramas[index].hotspots.forEach((hotspot, i) => {
+          const button = document.createElement("button");
+          button.className =
+            "absolute bg-gray-800 bg-opacity-50 text-white rounded-full w-8 h-8 flex items-center justify-center pointer-events-auto";
+          button.style.top = hotspot.position.top || "50%";
+          if (hotspot.position.left) button.style.left = hotspot.position.left;
+          if (hotspot.position.right)
+            button.style.right = hotspot.position.right;
+          button.innerHTML = `<span class="text-sm">${i + 1}</span>`;
+          button.onclick = () => changePanorama(hotspot.target);
+          iconsContainer.appendChild(button);
+        });
+      }
 
-    <!--profiles start -->
-    <section id="profiles" class="profiles">
-      <div class="profiles-details">
-        <div class="section-heading text-center">
-          <h2>profiles</h2>
-        </div>
-        <div class="container">
-          <div class="profiles-content">
-            <div class="row">
-              <div class="col-sm-3">
-                <div class="single-profile">
-                  <div class="profile-txt">
-                    <a target="_blank" href="https://github.com/nhamdinh"
-                      ><i class="flaticon-themeforest"></i
-                    ></a>
-                    <div class="profile-icon-name">themeforest</div>
-                  </div>
-                  <div class="single-profile-overlay">
-                    <div class="profile-txt">
-                      <a target="_blank" href="https://github.com/nhamdinh"
-                        ><i class="flaticon-themeforest"></i
-                      ></a>
-                      <div class="profile-icon-name">themeforest</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="single-profile">
-                  <div class="profile-txt">
-                    <a target="_blank" href="https://github.com/nhamdinh"
-                      ><i class="flaticon-dribbble"></i
-                    ></a>
-                    <div class="profile-icon-name">dribbble</div>
-                  </div>
-                  <div class="single-profile-overlay">
-                    <div class="profile-txt">
-                      <a target="_blank" href="https://github.com/nhamdinh"
-                        ><i class="flaticon-dribbble"></i
-                      ></a>
-                      <div class="profile-icon-name">dribbble</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="single-profile">
-                  <div class="profile-txt">
-                    <a target="_blank" href="https://github.com/nhamdinh"
-                      ><i class="flaticon-behance-logo"></i
-                    ></a>
-                    <div class="profile-icon-name">behance</div>
-                  </div>
-                  <div class="single-profile-overlay">
-                    <div class="profile-txt">
-                      <a target="_blank" href="https://github.com/nhamdinh"
-                        ><i class="flaticon-behance-logo"></i
-                      ></a>
-                      <div class="profile-icon-name">behance</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="single-profile profile-no-border">
-                  <div class="profile-txt">
-                    <a target="_blank" href="https://github.com/nhamdinh"
-                      ><i class="flaticon-github-logo"></i
-                    ></a>
-                    <div class="profile-icon-name">github</div>
-                  </div>
-                  <div class="single-profile-overlay">
-                    <div class="profile-txt">
-                      <a target="_blank" href="https://github.com/nhamdinh"
-                        ><i class="flaticon-github-logo"></i
-                      ></a>
-                      <div class="profile-icon-name">github</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="profile-border"></div>
-            <div class="row">
-              <div class="col-sm-3">
-                <div class="single-profile">
-                  <div class="profile-txt">
-                    <a target="_blank" href="https://github.com/nhamdinh"
-                      ><i class="flaticon-flickr-website-logo-silhouette"></i
-                    ></a>
-                    <div class="profile-icon-name">flickR</div>
-                  </div>
-                  <div class="single-profile-overlay">
-                    <div class="profile-txt">
-                      <a target="_blank" href="https://github.com/nhamdinh"
-                        ><i class="flaticon-flickr-website-logo-silhouette"></i
-                      ></a>
-                      <div class="profile-icon-name">flickR</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="single-profile">
-                  <div class="profile-txt">
-                    <a target="_blank" href="https://github.com/nhamdinh"
-                      ><i class="flaticon-smug"></i
-                    ></a>
-                    <div class="profile-icon-name">smungMung</div>
-                  </div>
-                  <div class="single-profile-overlay">
-                    <div class="profile-txt">
-                      <a target="_blank" href="https://github.com/nhamdinh"
-                        ><i class="flaticon-smug"></i
-                      ></a>
-                      <div class="profile-icon-name">smungMung</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="single-profile">
-                  <div class="profile-txt">
-                    <a target="_blank" href="https://github.com/nhamdinh"
-                      ><i class="flaticon-squarespace-logo"></i
-                    ></a>
-                    <div class="profile-icon-name">squareSpace</div>
-                  </div>
-                  <div class="single-profile-overlay">
-                    <div class="profile-txt">
-                      <a target="_blank" href="https://github.com/nhamdinh"
-                        ><i class="flaticon-squarespace-logo"></i
-                      ></a>
-                      <div class="profile-icon-name">squareSpace</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="single-profile profile-no-border">
-                  <div class="profile-txt">
-                    <a target="_blank" href="https://github.com/nhamdinh"
-                      ><i
-                        class="flaticon-bitbucket-logotype-camera-lens-in-perspective"
-                      ></i
-                    ></a>
-                    <div class="profile-icon-name">bitBucket</div>
-                  </div>
-                  <div class="single-profile-overlay">
-                    <div class="profile-txt">
-                      <a target="_blank" href="https://github.com/nhamdinh"
-                        ><i
-                          class="flaticon-bitbucket-logotype-camera-lens-in-perspective"
-                        ></i
-                      ></a>
-                      <div class="profile-icon-name">bitBucket</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--/.profiles-->
-    <!--profiles end -->
+      function changePanorama(index) {
+        initializePanorama(index);
+      }
 
-    <!--portfolio start -->
-    <section id="portfolio" class="portfolio">
-      <div class="portfolio-details">
-        <div class="section-heading text-center">
-          <h2>portfolio</h2>
-        </div>
-        <div class="container">
-          <div class="portfolio-content">
-            <div class="isotope">
-              <div class="row">
-                <div class="col-sm-4">
-                  <div class="item">
-                    <img
-                      src="assets/images/portfolio/p6.png"
-                      alt="portfolio image"
-                    />
-                    <div class="isotope-overlay">
-                      <a href="#"> front-end developer </a>
-                    </div>
-                    <!-- /.isotope-overlay -->
-                  </div>
-                  <!-- /.item -->
-                </div>
-                <!-- /.col -->
-
-                <div class="col-sm-4">
-                  <div class="item">
-                    <img
-                      src="assets/images/portfolio/p11.png"
-                      alt="portfolio image"
-                    />
-                    <div class="isotope-overlay">
-                      <a href="#"> backend developer </a>
-                    </div>
-                    <!-- /.isotope-overlay -->
-                  </div>
-                  <!-- /.item -->
-                </div>
-                <!-- /.col -->
-
-                <div class="col-sm-4">
-                  <div class="item">
-                    <img
-                      src="assets/images/portfolio/p8.jpg"
-                      alt="portfolio image"
-                    />
-                    <div class="isotope-overlay">
-                      <a href="#"> full-stack developer </a>
-                    </div>
-                    <!-- /.isotope-overlay -->
-                  </div>
-                  <!-- /.item -->
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-            <!--/.isotope-->
-          </div>
-          <!--/.gallery-content-->
-        </div>
-        <!--/.container-->
-      </div>
-      <!--/.portfolio-details-->
-    </section>
-    <!--/.portfolio-->
-    <!--portfolio end -->
-
-    <!--footer-copyright start-->
-    <footer id="footer-copyright" class="footer-copyright">
-      <div class="container">
-        <div class="hm-footer-copyright text-center">
-          <p>&copy; copyright JSON.</p>
-          <!--/p-->
-        </div>
-        <!--/.text-center-->
-      </div>
-      <!--/.container-->
-
-      <div id="scroll-Top">
-        <div class="return-to-top">
-          <i class="fa fa-angle-up" id="scroll-top"></i>
-        </div>
-      </div>
-      <!--/.scroll-Top-->
-    </footer>
-    <!--/.footer-copyright-->
-    <!--footer-copyright end-->
-
-    <!-- Include all js compiled plugins (below), or include individual files as needed -->
-
-    <script src="assets/js/jquery.js"></script>
-
-    <!--modernizr.min.js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-
-    <!--bootstrap.min.js-->
-    <script src="assets/js/bootstrap.min.js"></script>
-
-    <!-- bootsnav js -->
-    <script src="assets/js/bootsnav.js"></script>
-
-    <!-- jquery.sticky.js -->
-    <script src="assets/js/jquery.sticky.js"></script>
-
-    <!-- for progress bar start-->
-
-    <!-- progressbar js -->
-    <script src="assets/js/progressbar.js"></script>
-
-    <!-- appear js -->
-    <script src="assets/js/jquery.appear.js"></script>
-
-    <!-- for progress bar end -->
-
-    <!--owl.carousel.js-->
-    <script src="assets/js/owl.carousel.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-    <!--Custom JS-->
-    <script src="assets/js/custom.js"></script>
+      // Initialize the first panorama
+      initializePanorama(0);
+    </script>
   </body>
 </html>
