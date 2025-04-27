@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whitecroft Gardens</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <style>
+        .header-scrolled {
+            background-color: #3D4B4E;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #panorama {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 w-full z-10 transition-all duration-300" x-data="{ open: false }">
+        <div class="py-4 px-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex flex-col items-center justify-center text-white">
+                <div class="text-2xl font-serif tracking-wide">WHITECROFT</div>
+                <div class="text-2xl font-serif tracking-wide">GARDENS</div>
+            </div>
+
+            <!-- Desktop Navbar -->
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a href="./location.html" class="text-brown-500 hover:text-brown-600">Location</a>
+                <a href="./schools.html" class="text-brown-500 hover:text-brown-600">Schools</a>
+                <a href="./interios.html" class="text-brown-500 hover:text-brown-600">Interiors</a>
+                <a href="#" class="text-brown-500 hover:text-brown-600">Floorplans</a>
+                <a href="javascript:void(0)" class="text-brown-500 hover:text-brown-600"
+                    onclick="togglePopup()">Enquire</a>
+                <a href="https://instagram.com" target="_blank" class="text-brown-500 hover:text-brown-600">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M7.75 2C4.45 2 2 4.45 2 7.75v8.5C2 19.55 4.45 22 7.75 22h8.5c3.3 0 5.75-2.45 5.75-5.75v-8.5C22 4.45 19.55 2 16.25 2h-8.5zM12 8a4 4 0 110 8 4 4 0 010-8zm5.25-.75a1 1 0 110 2 1 1 0 010-2zM12 9.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z" />
+                    </svg>
+                </a>
+            </nav>
+
+
+            <!-- Mobile Button -->
+            <button class="md:hidden text-white" @click="open = !open">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+            <div id="enquire-popup"
+                class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center md:justify-end z-50">
+                <div class="bg-[#3D4B4E] w-full max-w-md p-6 relative md:mr-0 md:h-full md:max-w-sm">
+                    <!-- Close Button -->
+                    <button onclick="togglePopup()" class="absolute top-4 right-4 text-white text-xl">&times;</button>
+
+                    <!-- Form -->
+                    <h2 class="text-white text-2xl font-light mb-6">Register Your Interest</h2>
+                    <div class="space-y-4">
+                        <input type="text" placeholder="First name *"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none" />
+                        <input type="text" placeholder="Last name *"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none" />
+                        <input type="email" placeholder="Email *"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none" />
+                        <input type="tel" placeholder="Phone *"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none" />
+                        <div class="space-y-2">
+                            <label class="flex items-center text-white">
+                                <input type="checkbox" class="mr-2" />
+                                I am interested in a detached home
+                            </label>
+                            <label class="flex items-center text-white">
+                                <input type="checkbox" class="mr-2" />
+                                I am interested in a semi-detached home
+                            </label>
+                        </div>
+                        <textarea placeholder="Message"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none resize-none"
+                            rows="3"></textarea>
+                        <button class="w-full py-2 bg-[#D4BFA7] text-white uppercase tracking-wide">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div x-show="open" x-transition:enter="transition transform duration-700 ease-in-out"
+            x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition transform duration-700 ease-in-out" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="-translate-x-full"
+            class="md:hidden fixed inset-0 bg-[#3D4B4E] p-4 space-y-4 flex flex-col justify-center">
+            <a href="./location.html" class="block text-white hover:text-gray-300 text-center text-lg">Location</a>
+            <a href="./schools.html" class="block text-white hover:text-gray-300 text-center text-lg">Schools</a>
+            <a href="./interios.html" class="block text-white hover:text-gray-300 text-center text-lg">Interiors</a>
+            <a href="#" class="block text-white hover:text-gray-300 text-center text-lg">Floorplans</a>
+            <a href="javascript:void(0)" class="block text-white hover:text-gray-300 text-center text-lg"
+                onclick="togglePopup()">Enquire</a>
+
+            <!-- Instagram item -->
+            <div class="flex items-center justify-center space-x-2 text-white hover:text-gray-300">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M7.75 2C4.45 2 2 4.45 2 7.75v8.5C2 19.55 4.45 22 7.75 22h8.5c3.3 0 5.75-2.45 5.75-5.75v-8.5C22 4.45 19.55 2 16.25 2h-8.5zM12 8a4 4 0 110 8 4 4 0 010-8zm5.25-.75a1 1 0 110 2 1 1 0 010-2zM12 9.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z" />
+                </svg>
+                <a href="https://instagram.com" target="_blank" class="hover:underline">Instagram</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Banner 1 -->
+    <section class="h-screen flex flex-col md:flex-row">
+        <div class="w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center bg-[#3D4B4E] relative">
+            <div class="text-center p-6">
+                <div class="text-center p-6">
+                    <h1 class="text-5xl md:text-6xl font-light text-gray-800 mb-4">
+                        Floorplans
+                    </h1>
+                    <p class="text-xl md:text-2xl font-light text-gray-800 mb-4">
+                        Seven Impeccable New Residences
+                    </p>
+                </div>
+            </div>
+            <div class="absolute inset-0 opacity-20">
+                <img src="https://static.wixstatic.com/media/f3891e_5fb9aed5e0434763a8c84c281749b98b~mv2.png/v1/fill/w_952,h_919,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/f3891e_5fb9aed5e0434763a8c84c281749b98b~mv2.png"
+                    alt="Interior" class="w-full h-full object-cover" />
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 h-1/2 md:h-full">
+            <img src="https://static.wixstatic.com/media/f3891e_7e3f2893e9204fe19900df5615820c26~mv2.jpg/v1/fill/w_953,h_919,fp_0.41_0.44,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/edit%20pexels-anastasia-shuraeva-7671246%20copy.jpg"
+                alt="Interior" class="w-full h-full object-cover" />
+        </div>
+    </section>
+    <!-- Banner 1 -->
+    <section class="h-screen flex flex-col md:flex-row bg-[#3D4B4E]">
+        <div class="w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center">
+            <img src="https://static.wixstatic.com/media/f3891e_50813b8049b8464ea665fbf1007ac40a~mv2.png/v1/fill/w_774,h_516,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Main%20Site%20Plan.png"
+                alt="Interior" class="max-w-full max-h-full object-contain object-center" />
+        </div>
+        <div class="w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center relative">
+            <div class="text-center p-6">
+                <div class="text-center p-6">
+                    <h1 class="text-5xl md:text-6xl font-light text-white mb-4">
+                        Beyond Ordinary, Exceptional
+                    </h1>
+                    <h1 class="text-5xl md:text-6xl font-light text-white mb-4">
+                        New Homes
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <!-- List of Houses -->
+            <div id="house-list">
+                <div class="house-item border-t border-gray-300 py-4 cursor-pointer flex justify-center items-center"
+                    data-house="house-1">
+                    <span class="text-lg font-semibold text-gray-800">HOUSE ONE | DETACHED | 4-BEDROOM</span>
+                    <span class="text-gray-600 ml-4">▼</span>
+                </div>
+                <div id="house-1" class="house-details hidden">
+                    <!-- 3 Columns: Image above, Text below -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_783088a033384c7cbef04eced4755707~mv2.png/v1/fill/w_419,h_954,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/H2%20GF.png"
+                                alt="House One Image 1" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Patio / Outdoor - 111 sqm | 1194 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_2b3dadfcaf404216952bc822101bf518~mv2.png/v1/fill/w_305,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20FF.png"
+                                alt="House One Image 2" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Kitchen / Living / Dining - 45.1 sqm | 485.3
+                                sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_6c318d46300c411d8ecb8abb8396942a~mv2.png/v1/fill/w_337,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20SF.png"
+                                alt="House One Image 3" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Utility - 8.9 sqm | 95.8 sqft</p>
+                        </div>
+                    </div>
+                    <!-- 3 Columns: Text only -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">WC - 2.1 sqm | 22.6 sqft</p>
+                            <p class="text-gray-600 text-sm">Lounge - 17.3 sqm | 186.1 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Primary Bedroom - 27.8 sqm | 299.1 sqft</p>
+                            <p class="text-gray-600 text-sm">Primary Ensuite - 17 sqm | 182.9 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Dresser - 4 sqm | 43 sqft</p>
+                            <p class="text-gray-600 text-sm">Study - 9.1 sqm | 97.9 sqft</p>
+                        </div>
+                    </div>
+                    <!-- Single Image in the Middle -->
+                    <div class="flex justify-center mb-8">
+                        <img src="https://static.wixstatic.com/media/f3891e_05215aa2e6784453925ce8d18ef5aaf5~mv2.png/v1/fill/w_452,h_319,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Site%20Plans%202-min.png"
+                            alt="House One Floor Plan" class="w-full max-w-4xl h-auto" />
+                    </div>
+                </div>
+
+                <div class="house-item border-t border-gray-300 py-4 cursor-pointer flex justify-center items-center"
+                    data-house="house-2">
+                    <span class="text-lg font-semibold text-gray-800">HOUSE TWO | DETACHED | 4-BEDROOM</span>
+                    <span class="text-gray-600 ml-4">▼</span>
+                </div>
+                <div id="house-2" class="house-details hidden">
+                    <!-- 3 Columns: Image above, Text below -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_783088a033384c7cbef04eced4755707~mv2.png/v1/fill/w_419,h_954,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/H2%20GF.png"
+                                alt="House Two Image 1" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Patio / Outdoor - 110 sqm | 1184 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_2b3dadfcaf404216952bc822101bf518~mv2.png/v1/fill/w_305,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20FF.png"
+                                alt="House Two Image 2" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Kitchen / Living / Dining - 44 sqm | 473.6 sqft
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_6c318d46300c411d8ecb8abb8396942a~mv2.png/v1/fill/w_337,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20SF.png"
+                                alt="House Two Image 3" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Utility - 8.5 sqm | 91.5 sqft</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">WC - 2 sqm | 21.5 sqft</p>
+                            <p class="text-gray-600 text-sm">Lounge - 17 sqm | 183 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Primary Bedroom - 27 sqm | 290.6 sqft</p>
+                            <p class="text-gray-600 text-sm">Primary Ensuite - 16.5 sqm | 177.6 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Dresser - 4.2 sqm | 45.2 sqft</p>
+                            <p class="text-gray-600 text-sm">Study - 9 sqm | 96.9 sqft</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mb-8">
+                        <img src="https://static.wixstatic.com/media/f3891e_05215aa2e6784453925ce8d18ef5aaf5~mv2.png/v1/fill/w_452,h_319,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Site%20Plans%202-min.png"
+                            alt="House Two Floor Plan" class="w-full max-w-4xl h-auto" />
+                    </div>
+                </div>
+
+                <div class="house-item border-t border-gray-300 py-4 cursor-pointer flex justify-center items-center"
+                    data-house="house-3">
+                    <span class="text-lg font-semibold text-gray-800">HOUSE THREE | DETACHED | 4-BEDROOM</span>
+                    <span class="text-gray-600 ml-4">▼</span>
+                </div>
+                <div id="house-3" class="house-details hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_783088a033384c7cbef04eced4755707~mv2.png/v1/fill/w_419,h_954,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/H2%20GF.png"
+                                alt="House Three Image 1" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Patio / Outdoor - 109 sqm | 1173 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_2b3dadfcaf404216952bc822101bf518~mv2.png/v1/fill/w_305,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20FF.png"
+                                alt="House Three Image 2" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Kitchen / Living / Dining - 43 sqm | 462.8 sqft
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_6c318d46300c411d8ecb8abb8396942a~mv2.png/v1/fill/w_337,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20SF.png"
+                                alt="House Three Image 3" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Utility - 8.3 sqm | 89.3 sqft</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">WC - 2 sqm | 21.5 sqft</p>
+                            <p class="text-gray-600 text-sm">Lounge - 16.8 sqm | 180.8 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Primary Bedroom - 26.5 sqm | 285.2 sqft</p>
+                            <p class="text-gray-600 text-sm">Primary Ensuite - 16 sqm | 172.2 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Dresser - 4 sqm | 43 sqft</p>
+                            <p class="text-gray-600 text-sm">Study - 8.9 sqm | 95.8 sqft</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mb-8">
+                        <img src="https://static.wixstatic.com/media/f3891e_05215aa2e6784453925ce8d18ef5aaf5~mv2.png/v1/fill/w_452,h_319,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Site%20Plans%202-min.png"
+                            alt="House Three Floor Plan" class="w-full max-w-4xl h-auto" />
+                    </div>
+                </div>
+
+                <div class="house-item border-t border-gray-300 py-4 cursor-pointer flex justify-center items-center"
+                    data-house="house-4">
+                    <span class="text-lg font-semibold text-gray-800">HOUSE FOUR | SEMI-DETACHED | 4-BEDROOM</span>
+                    <span class="text-gray-600 ml-4">▼</span>
+                </div>
+                <div id="house-4" class="house-details hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_783088a033384c7cbef04eced4755707~mv2.png/v1/fill/w_419,h_954,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/H2%20GF.png"
+                                alt="House Four Image 1" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Patio / Outdoor - 108 sqm | 1162 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_2b3dadfcaf404216952bc822101bf518~mv2.png/v1/fill/w_305,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20FF.png"
+                                alt="House Four Image 2" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Kitchen / Living / Dining - 42 sqm | 452 sqft
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_6c318d46300c411d8ecb8abb8396942a~mv2.png/v1/fill/w_337,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20SF.png"
+                                alt="House Four Image 3" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Utility - 8.2 sqm | 88.3 sqft</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">WC - 2 sqm | 21.5 sqft</p>
+                            <p class="text-gray-600 text-sm">Lounge - 16.5 sqm | 177.6 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Primary Bedroom - 26 sqm | 279.9 sqft</p>
+                            <p class="text-gray-600 text-sm">Primary Ensuite - 15.5 sqm | 166.8 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Dresser - 4 sqm | 43 sqft</p>
+                            <p class="text-gray-600 text-sm">Study - 8.8 sqm | 94.7 sqft</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mb-8">
+                        <img src="https://static.wixstatic.com/media/f3891e_05215aa2e6784453925ce8d18ef5aaf5~mv2.png/v1/fill/w_452,h_319,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Site%20Plans%202-min.png"
+                            alt="House Four Floor Plan" class="w-full max-w-4xl h-auto" />
+                    </div>
+                </div>
+
+                <div class="house-item border-t border-gray-300 py-4 cursor-pointer flex justify-center items-center"
+                    data-house="house-5">
+                    <span class="text-lg font-semibold text-gray-800">HOUSE FIVE | SEMI-DETACHED | 4-BEDROOM</span>
+                    <span class="text-gray-600 ml-4">▼</span>
+                </div>
+                <div id="house-5" class="house-details hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_783088a033384c7cbef04eced4755707~mv2.png/v1/fill/w_419,h_954,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/H2%20GF.png"
+                                alt="House Five Image 1" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Patio / Outdoor - 107 sqm | 1151 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_2b3dadfcaf404216952bc822101bf518~mv2.png/v1/fill/w_305,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20FF.png"
+                                alt="House Five Image 2" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Kitchen / Living / Dining - 41 sqm | 441.3 sqft
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_6c318d46300c411d8ecb8abb8396942a~mv2.png/v1/fill/w_337,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20SF.png"
+                                alt="House Five Image 3" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Utility - 8.1 sqm | 87.2 sqft</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">WC - 2 sqm | 21.5 sqft</p>
+                            <p class="text-gray-600 text-sm">Lounge - 16.3 sqm | 175.5 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Primary Bedroom - 25.5 sqm | 274.5 sqft</p>
+                            <p class="text-gray-600 text-sm">Primary Ensuite - 15 sqm | 161.5 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Dresser - 4 sqm | 43 sqft</p>
+                            <p class="text-gray-600 text-sm">Study - 8.7 sqm | 93.6 sqft</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mb-8">
+                        <img src="https://static.wixstatic.com/media/f3891e_05215aa2e6784453925ce8d18ef5aaf5~mv2.png/v1/fill/w_452,h_319,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Site%20Plans%202-min.png"
+                            alt="House Five Floor Plan" class="w-full max-w-4xl h-auto" />
+                    </div>
+                </div>
+
+                <div class="house-item border-t border-gray-300 py-4 cursor-pointer flex justify-center items-center"
+                    data-house="house-6">
+                    <span class="text-lg font-semibold text-gray-800">HOUSE SIX | SEMI-DETACHED | 4-BEDROOM</span>
+                    <span class="text-gray-600 ml-4">▼</span>
+                </div>
+                <div id="house-6" class="house-details hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_783088a033384c7cbef04eced4755707~mv2.png/v1/fill/w_419,h_954,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/H2%20GF.png"
+                                alt="House Six Image 1" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Patio / Outdoor - 106 sqm | 1141 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_2b3dadfcaf404216952bc822101bf518~mv2.png/v1/fill/w_305,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20FF.png"
+                                alt="House Six Image 2" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Kitchen / Living / Dining - 40 sqm | 430.6 sqft
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_6c318d46300c411d8ecb8abb8396942a~mv2.png/v1/fill/w_337,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20SF.png"
+                                alt="House Six Image 3" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Utility - 8 sqm | 86.1 sqft</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">WC - 2 sqm | 21.5 sqft</p>
+                            <p class="text-gray-600 text-sm">Lounge - 16 sqm | 172.2 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Primary Bedroom - 25 sqm | 269.1 sqft</p>
+                            <p class="text-gray-600 text-sm">Primary Ensuite - 14.5 sqm | 156.1 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Dresser - 4 sqm | 43 sqft</p>
+                            <p class="text-gray-600 text-sm">Study - 8.6 sqm | 92.6 sqft</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mb-8">
+                        <img src="https://static.wixstatic.com/media/f3891e_05215aa2e6784453925ce8d18ef5aaf5~mv2.png/v1/fill/w_452,h_319,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Site%20Plans%202-min.png"
+                            alt="House Six Floor Plan" class="w-full max-w-4xl h-auto" />
+                    </div>
+                </div>
+
+                <div class="house-item border-t border-gray-300 py-4 cursor-pointer flex justify-center items-center"
+                    data-house="house-7">
+                    <span class="text-lg font-semibold text-gray-800">HOUSE SEVEN | SEMI-DETACHED | 4-BEDROOM |
+                        SOLD</span>
+                    <span class="text-gray-600 ml-4">▼</span>
+                </div>
+                <div id="house-7" class="house-details hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_783088a033384c7cbef04eced4755707~mv2.png/v1/fill/w_419,h_954,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/H2%20GF.png"
+                                alt="House Seven Image 1" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Patio / Outdoor - 105 sqm | 1130 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_2b3dadfcaf404216952bc822101bf518~mv2.png/v1/fill/w_305,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20FF.png"
+                                alt="House Seven Image 2" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Kitchen / Living / Dining - 39 sqm | 419.8 sqft
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="https://static.wixstatic.com/media/f3891e_6c318d46300c411d8ecb8abb8396942a~mv2.png/v1/fill/w_337,h_618,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/H1-3%20SF.png"
+                                alt="House Seven Image 3" class="w-full max-w-xs h-48 object-cover mb-4" />
+                            <p class="text-gray-600 text-sm text-center">Utility - 7.9 sqm | 85.1 sqft</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">WC - 2 sqm | 21.5 sqft</p>
+                            <p class="text-gray-600 text-sm">Lounge - 15.8 sqm | 170.1 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Primary Bedroom - 24.5 sqm | 263.7 sqft</p>
+                            <p class="text-gray-600 text-sm">Primary Ensuite - 14 sqm | 150.7 sqft</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-600 text-sm">Dresser - 4 sqm | 43 sqft</p>
+                            <p class="text-gray-600 text-sm">Study - 8.5 sqm | 91.5 sqft</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mb-8">
+                        <img src="https://static.wixstatic.com/media/f3891e_05215aa2e6784453925ce8d18ef5aaf5~mv2.png/v1/fill/w_452,h_319,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Site%20Plans%202-min.png"
+                            alt="House Seven Floor Plan" class="w-full max-w-4xl h-auto" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note -->
+            <div class="mt-8 flex justify-center">
+                <p class="text-gray-500 text-xs text-center max-w-3xl">
+                    All images and the dimensions given are illustrations for this unit type and individual plots may
+                    differ. These dimensions should not be used for carpet or flooring sizes, appliance spaces or items
+                    of furniture. Please check with your sales
+                    adviser in respect of individual properties.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="py-12 bg-cover bg-center"
+        style="background-image: url('https://static.wixstatic.com/media/f3891e_02e1b2987342418da1fba28315a08b2b~mv2.png/v1/fill/w_1905,h_744,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/f3891e_02e1b2987342418da1fba28315a08b2b~mv2.png'); background-color: #3D4B4E;">
+        <div class="container mx-auto px-4">
+            <!-- Swiper Slider -->
+            <div class="swiper-container relative mb-12 overflow-hidden">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+                            alt="Living Room" class="w-full h-[500px] object-cover" />
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <img src="https://noithattugia.com/wp-content/uploads/2024/08/mau-nha-dep-anh-dai-dien-2024-scaled.jpg"
+                            alt="Bathroom" class="w-full h-[500px] object-cover" />
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <img src="https://xaydunganthienphat.com.vn/upload/filemanager/mau%20nha/mau%20nha%20cap%204%20mai%20thai%203%20phong%20ngu/mau-nha-cap-4-mai-thai-3-phong-ngu-1-phong-tho-mau-so-2.jpg"
+                            alt="Study Room" class="w-full h-[500px] object-cover" />
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide">
+                        <img src="https://xaydunganthienphat.com.vn/upload/filemanager/mau%20nha/mau%20nha%20cap%204%20mai%20thai%203%20phong%20ngu/mau-nha-cap-4-mai-thai-3-phong-ngu-1-phong-tho-mau-so-2.jpg"
+                            alt="Study Room" class="w-full h-[500px] object-cover" />
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="swiper-slide">
+                        <img src="https://xaydunganthienphat.com.vn/upload/filemanager/mau%20nha/mau%20nha%20cap%204%20mai%20thai%203%20phong%20ngu/mau-nha-cap-4-mai-thai-3-phong-ngu-1-phong-tho-mau-so-2.jpg"
+                            alt="Study Room" class="w-full h-[500px] object-cover" />
+                    </div>
+                    <!-- Slide 6 -->
+                    <div class="swiper-slide">
+                        <img src="https://xaydunganthienphat.com.vn/upload/filemanager/mau%20nha/mau%20nha%20cap%204%20mai%20thai%203%20phong%20ngu/mau-nha-cap-4-mai-thai-3-phong-ngu-1-phong-tho-mau-so-2.jpg"
+                            alt="Study Room" class="w-full h-[500px] object-cover" />
+                    </div>
+                </div>
+                <!-- Add Navigation -->
+                <div class="swiper-button-next text-white bg-black rounded-full p-3"></div>
+                <div class="swiper-button-prev text-white bg-black rounded-full p-3"></div>
+            </div>
+
+            <!-- Banner -->
+            <div class="text-center py-24">
+                <h2 class="text-4xl md:text-5xl font-light text-white uppercase tracking-wide">
+                    "The really important thing is not to live,<br /> but to live well"
+                </h2>
+                <p class="text-white">- SOCRATES</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="min-h-screen bg-cover bg-center relative"
+        style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')">
+        <!-- Overlay with text and button -->
+        <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full md:w-1/3 h-auto bg-opacity-90 bg-[#D9C6C0] p-8 md:p-16 flex flex-col justify-center items-center text-center">
+            <p class="text-gray-600 text-sm mb-4">Want to Know More?</p>
+            <img src="https://static.wixstatic.com/media/8226c2_ecfddca7329d4978a3c563d2fe0c447d~mv2.png/v1/fill/w_262,h_381,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8226c2_ecfddca7329d4978a3c563d2fe0c447d~mv2.png"
+                alt="Brochure" class="w-48 mb-6" />
+            <h2 class="text-2xl md:text-3xl text-gray-800 font-semibold mb-4">Register Your Interest</h2>
+            <p class="text-gray-600 text-sm mb-6">
+                Fill in your details to receive our brochure and someone from the team will get back to you.
+            </p>
+            <button id="openModalBtn" class="text-gray-800 flex items-center hover:text-gray-600">
+                Register Now <span class="ml-2">→</span>
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-white p-6 md:p-12 w-full max-w-lg relative">
+                <!-- Close button -->
+                <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+                <!-- Form -->
+                <h2 class="text-2xl md:text-3xl text-gray-800 font-semibold mb-6">Register Your Interest</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-600 text-sm mb-2" for="firstName">First Name *</label>
+                        <input type="text" id="firstName"
+                            class="w-full border-b border-gray-300 p-2 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 text-sm mb-2" for="lastName">Last Name *</label>
+                        <input type="text" id="lastName"
+                            class="w-full border-b border-gray-300 p-2 focus:outline-none" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-600 text-sm mb-2" for="email">Email *</label>
+                        <input type="email" id="email" class="w-full border-b border-gray-300 p-2 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 text-sm mb-2" for="phone">Phone *</label>
+                        <input type="tel" id="phone" class="w-full border-b border-gray-300 p-2 focus:outline-none" />
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-600 text-sm mb-2" for="interest">I am interested in *</label>
+                    <select id="interest" class="w-full border-b border-gray-300 p-2 focus:outline-none">
+                        <option value="">Select an option</option>
+                        <option value="detached">A detached home</option>
+                        <option value="semi-detached">A semi-detached home</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-600 text-sm mb-2" for="message">Message</label>
+                    <textarea id="message" class="w-full border-b border-gray-300 p-2 focus:outline-none"
+                        rows="3"></textarea>
+                </div>
+                <button class="w-full bg-[#D9C6C0] text-gray-800 py-2 hover:bg-opacity-90">Submit</button>
+            </div>
+        </div>
+    </section>
+    <footer class="py-12" style="background-color: #3D4B4E;">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-gray-300 text-sm font-serif mb-4 md:mb-0">
+                BEAUPROPERTY
+            </div>
+            <div class="text-gray-300 text-sm text-center mb-4 md:mb-0">
+                Whitecroft Gardens, London Road, Southborough, TN4 0RQ
+            </div>
+            <div class="text-gray-300 text-sm flex space-x-4">
+                <a href="#" class="hover:text-gray-100">WEBSITE</a>
+                <a href="#" class="hover:text-gray-100">BRANDING AND CGIS BY ADEMCHIC</a>
+                <a href="#" class="hover:text-gray-100">PRIVACY POLICY</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        window.addEventListener("scroll", () => {
+            const header = document.getElementById("header");
+            if (window.scrollY > 50) {
+                header.classList.add("header-scrolled");
+            } else {
+                header.classList.remove("header-scrolled");
+            }
+        });
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modal = document.getElementById('registerModal');
+
+        openModalBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1, // Show only 1 full slide
+            spaceBetween: 20, // Reduce space between slides
+            centeredSlides: true, // Center the active slide
+            loop: true, // Enable loop
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        document.querySelectorAll('.house-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const houseId = item.getAttribute('data-house');
+                const details = document.getElementById(houseId);
+                const isOpen = !details.classList.contains('hidden');
+
+                // Close all other details
+                document.querySelectorAll('.house-details').forEach(detail => {
+                    detail.classList.add('hidden');
+                });
+                document.querySelectorAll('.house-item span:last-child').forEach(icon => {
+                    icon.textContent = '▼';
+                });
+
+                // Toggle the clicked house details
+                if (!isOpen) {
+                    details.classList.remove('hidden');
+                    item.querySelector('span:last-child').textContent = '▲';
+                }
+            });
+        });
+        function togglePopup() {
+            const popup = document.getElementById('enquire-popup');
+            popup.classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>
+<style>
+    .swiper-button-next,
+    .swiper-button-prev {
+        color: #fff !important;
+        /* White color for arrows */
+        opacity: 1 !important;
+        /* Ensure buttons are fully visible */
+        width: 40px !important;
+        /* Set width for circular button */
+        height: 40px !important;
+        /* Set height for circular button */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 16px !important;
+        /* Adjust arrow size to fit within circle */
+    }
+
+    .swiper-container {
+        max-width: 100%;
+        /* Ensure swiper doesn't exceed container width */
+    }
+
+    .swiper-slide {
+        width: 100% !important;
+        /* Ensure slides fit within container */
+    }
+
+    @media (max-width: 767px) {
+        #enquire-popup {
+            align-items: center;
+            justify-content: center;
+        }
+
+        #enquire-popup>div {
+            margin: 0 1rem;
+            height: auto;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+    }
+
+    @media (min-width: 768px) {
+        #enquire-popup>div {
+            margin-right: 0;
+            height: 100%;
+        }
+    }
+</style>

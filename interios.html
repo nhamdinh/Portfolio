@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whitecroft Gardens</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <style>
+        .header-scrolled {
+            background-color: #3D4B4E;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #panorama {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 w-full z-10 transition-all duration-300" x-data="{ open: false }">
+        <div class="py-4 px-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex flex-col items-center justify-center text-white">
+                <div class="text-2xl font-serif tracking-wide">WHITECROFT</div>
+                <div class="text-2xl font-serif tracking-wide">GARDENS</div>
+            </div>
+
+            <!-- Desktop Navbar -->
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a href="./location.html" class="text-brown-500 hover:text-brown-600">Location</a>
+                <a href="./schools.html" class="text-brown-500 hover:text-brown-600">Schools</a>
+                <a href="#" class="text-brown-500 hover:text-brown-600">Interiors</a>
+                <a href="./floorplans.html" class="text-brown-500 hover:text-brown-600">Floorplans</a>
+                <a href="javascript:void(0)" class="text-brown-500 hover:text-brown-600"
+                    onclick="togglePopup()">Enquire</a>
+                <a href="https://instagram.com" target="_blank" class="text-brown-500 hover:text-brown-600">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M7.75 2C4.45 2 2 4.45 2 7.75v8.5C2 19.55 4.45 22 7.75 22h8.5c3.3 0 5.75-2.45 5.75-5.75v-8.5C22 4.45 19.55 2 16.25 2h-8.5zM12 8a4 4 0 110 8 4 4 0 010-8zm5.25-.75a1 1 0 110 2 1 1 0 010-2zM12 9.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z" />
+                    </svg>
+                </a>
+            </nav>
+
+            <!-- Mobile Button -->
+            <button class="md:hidden text-white" @click="open = !open">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+            <div id="enquire-popup"
+                class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center md:justify-end z-50">
+                <div class="bg-[#3D4B4E] w-full max-w-md p-6 relative md:mr-0 md:h-full md:max-w-sm">
+                    <!-- Close Button -->
+                    <button onclick="togglePopup()" class="absolute top-4 right-4 text-white text-xl">&times;</button>
+
+                    <!-- Form -->
+                    <h2 class="text-white text-2xl font-light mb-6">Register Your Interest</h2>
+                    <div class="space-y-4">
+                        <input type="text" placeholder="First name *"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none" />
+                        <input type="text" placeholder="Last name *"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none" />
+                        <input type="email" placeholder="Email *"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none" />
+                        <input type="tel" placeholder="Phone *"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none" />
+                        <div class="space-y-2">
+                            <label class="flex items-center text-white">
+                                <input type="checkbox" class="mr-2" />
+                                I am interested in a detached home
+                            </label>
+                            <label class="flex items-center text-white">
+                                <input type="checkbox" class="mr-2" />
+                                I am interested in a semi-detached home
+                            </label>
+                        </div>
+                        <textarea placeholder="Message"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none resize-none"
+                            rows="3"></textarea>
+                        <button class="w-full py-2 bg-[#D4BFA7] text-white uppercase tracking-wide">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div x-show="open" x-transition:enter="transition transform duration-700 ease-in-out"
+            x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition transform duration-700 ease-in-out" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="-translate-x-full" class="md:hidden px-4 pb-4 space-y-2">
+            <a href="./location.html" class="block text-brown-500 hover:text-brown-600 text-center">Location</a>
+            <a href="./schools.html" class="block text-brown-500 hover:text-brown-600 text-center">Schools</a>
+            <a href="#" class="block text-brown-500 hover:text-brown-600 text-center">Interiors</a>
+            <a href="./floorplans.html" class="block text-brown-500 hover:text-brown-600 text-center">Floorplans</a>
+            <a href="javascript:void(0)" class="block text-white hover:text-gray-300 text-center text-lg"
+                onclick="togglePopup()">Enquire</a>
+
+            <!-- Instagram item -->
+            <div class="flex items-center justify-center space-x-2 text-brown-500 hover:text-brown-600">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M7.75 2C4.45 2 2 4.45 2 7.75v8.5C2 19.55 4.45 22 7.75 22h8.5c3.3 0 5.75-2.45 5.75-5.75v-8.5C22 4.45 19.55 2 16.25 2h-8.5zM12 8a4 4 0 110 8 4 4 0 010-8zm5.25-.75a1 1 0 110 2 1 1 0 010-2zM12 9.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z" />
+                </svg>
+                <a href="https://instagram.com" target="_blank" class="hover:underline">Instagram</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Banner 1 -->
+    <section class="h-screen flex flex-col md:flex-row">
+        <div class="w-full md:w-1/2 h-1/2 md:h-full">
+            <img src="https://static.wixstatic.com/media/f3891e_59a9181b06ef4067badd01ad7b67a640~mv2.jpg/v1/fill/w_952,h_919,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Whitecroft%20Gardens_Semidetached%20House_Kitchen%20living_LowRes-min.jpg"
+                alt="Interior" class="w-full h-full object-cover" />
+        </div>
+        <div class="w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center bg-gray-100 relative">
+            <div class="text-center p-6">
+                <div class="text-center p-6">
+                    <h1 class="text-5xl md:text-6xl font-light text-gray-800 mb-4">
+                        Interiors
+                    </h1>
+                    <p class="text-xl md:text-2xl font-light text-gray-800 mb-4">
+                        Modern Elegance in Every Detail
+                    </p>
+                </div>
+            </div>
+            <div class="absolute inset-0 opacity-20">
+                <img src="https://static.wixstatic.com/media/8226c2_dbe52b2bcc9242b3838556c748307ed8~mv2.png/v1/fill/w_953,h_919,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Shape%201.png"
+                    alt="Interior" class="w-full h-full object-cover" />
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Banner 1.6 -->
+    <section class="min-h-screen flex flex-col md:flex-row items-center bg-white py-12">
+        <div class="w-full md:w-2/3 p-4 md:p-12">
+            <h2 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
+                Beneath the captivating exteriors, discover interiors tailored for contemporary living, featuring
+                open-plan spaces bathed in natural light.
+            </h2>
+            <p class="text-gray-600 text-sm md:text-base">
+                Whitecroft Gardens epitomises exquisite living with its blend of contemporary design and traditional
+                elegance. Inside, discover bright, open-plan spaces illuminated by natural light, featuring Whitened Oak
+                Herringbone flooring for a seamless flow. Each home has been thoughtfully designed with future residents
+                in mind, offering charm, elegance, and comfort in every detail.
+            </p>
+        </div>
+        <div class="w-full md:w-1/3 min-h-screen">
+            <img src="https://static.wixstatic.com/media/f3891e_2f4fe098315849bda668a2f8a168605f~mv2.jpg/v1/fill/w_629,h_831,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Whitecroft%20Gardens_Detached%20House_Snug_LowRes-min.jpg"
+                alt="Bedroom" class="w-full h-full object-cover object-center" />
+        </div>
+    </section>
+    <!-- banner 1.55 -->
+    <section class="min-h-screen flex flex-col md:flex-row items-center bg-white p-5">
+        <div class="w-full md:w-2/2 h-96 md:h-full p-5">
+            <img src="https://static.wixstatic.com/media/f3891e_6e0292167271444fa1036e37b9ef00c0~mv2.jpg/v1/fill/w_1752,h_1077,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Whitecroft%20Gardens_Detached%20House_Kitchen%20closeup_LowRes-min.jpg"
+                alt="Living Room" class="w-full h-full object-cover rounded-lg" />
+        </div>
+    </section>
+    <section class="min-h-screen flex flex-col md:flex-row items-stretch bg-white py-12">
+        <div class="w-full md:w-1/2 p-4 md:p-5 flex flex-col">
+            <p class="text-gray-500 text-xs md:text-sm mb-4 italic">
+                Each bathroom has been designed with the utmost attention to detail, featuring handpicked premium
+                products and elegant sanitaryware complemented by brushed chrome fittings from the Emporio Gessi®
+                collection. Created to pay homage to Milan, one of Italy’s most beautiful cities and a hub of fashion
+                and design, where every street, square, and building evokes beauty and history, the Emporio Gessi®
+                collection is inspired by Milan’s premium prêt-à-porter fashion and harmoniously blends design and
+                functionality.
+                Most bathrooms include Laufen vanities, while primary suites boast bespoke dual sink vanity units. Fully
+                tiled, marble-inspired primary bathrooms merge convenience with elegance. Detached homes also enjoy the
+                added luxury of freestanding baths and separate showers, creating tranquil retreats. Additionally, each
+                house features a downstairs guest WC, enhancing functionality and comfort.
+            </p>
+            <img src="https://static.wixstatic.com/media/f3891e_1ad5d7116fc64505b56c0a5cca75dfd7~mv2.jpg/v1/fill/w_667,h_833,fp_0.23_0.49,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Whitecroft%20Gardens_Detached%20House_Primary%20Bathroom_LowRes-min.jpg"
+                alt="Bedroom" class="w-full h-full object-cover flex-1" />
+        </div>
+        <div class="w-full md:w-1/2 p-4 md:p-5 flex flex-col">
+
+            <img src="https://static.wixstatic.com/media/f3891e_66fe2dc7d8db4ae78900219daf9675f9~mv2.jpg/v1/fill/w_810,h_952,fp_0.30_0.49,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Whitecroft%20Gardens_Semidetached%20House_Bedroom_LowRes-min.jpg"
+                alt="Bedroom" class="w-full h-full object-cover flex-1" />
+            <p class="text-gray-500 text-xs md:text-sm mb-4 italic">
+                Step into the epitome of rest and relaxation, where each bedroom has been designed to maximise comfort
+                and luxury. Primary suites boast spacious walk-in dressing areas and en-suite bathrooms, enhancing both
+                convenience and sophistication.
+
+                Each primary bedroom is adorned with bespoke wardrobes and selected bedrooms have special accents in
+                such as bespoke wallpaper and fluted panelled walls, complemented by plush, soft carpeting.
+            </p>
+        </div>
+    </section>
+    <section class="py-12 bg-white" x-data="vrTour()" x-init="init()">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-light text-gray-800 mb-6 text-center">
+                Explore our VR tour
+            </h2>
+            <div id="panorama" class="w-full h-[500px]"></div>
+
+            <!-- List Thumbnail -->
+            <div class="flex mt-6 gap-4 overflow-x-auto justify-center">
+                <template x-for="scene in scenes" :key="scene.id">
+                    <div class="w-32 h-20 rounded overflow-hidden cursor-pointer border-2 border-transparent hover:border-blue-500 transition-all"
+                        @click="loadScene(scene.id)">
+                        <img :src="scene.thumb" alt="" class="w-full h-full object-cover" />
+                    </div>
+                </template>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex gap-4 mt-6 justify-center">
+                <button @click="toggleAutoRotate()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                    Toggle Auto Rotate
+                </button>
+                <button @click="resetView()" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+                    Reset View
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12" style="background-color: #4F4836;">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl text-white font-light mb-8">Specification</h2>
+
+            <!-- Two Columns -->
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Left Column -->
+                <div class="w-full md:w-1/2 space-y-4">
+                    <!-- Interior Finishes -->
+                    <div class="border-t border-white">
+                        <button
+                            class="w-full flex justify-between items-center py-4 text-white text-lg font-semibold focus:outline-none"
+                            onclick="toggleAccordion('interiorFinishes')">
+                            <span>INTERIOR FINISHES</span>
+                            <svg id="interiorFinishesIcon" class="w-6 h-6 transform transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="interiorFinishes" class="text-gray-300 text-sm hidden">
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>Contemporary shaker single-panel doors</li>
+                                <li>Brushed brass ironmongery</li>
+                                <li>Whittened oak-toned large plank herringbone flooring in general areas</li>
+                                <li>Walls adomed with Farrow and Ball colour paint</li>
+                                <li>Contemporary panelled walls in entryways</li>
+                                <li>Staircase with black powder coated spindles and bespoke timber handrail</li>
+                                <li>Ample storage with wardrobes and large cupboards*</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Kitchen -->
+                    <div class="border-t border-white">
+                        <button
+                            class="w-full flex justify-between items-center py-4 text-white text-lg font-semibold focus:outline-none"
+                            onclick="toggleAccordion('kitchen')">
+                            <span>KITCHEN</span>
+                            <svg id="kitchenIcon" class="w-6 h-6 transform transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="kitchen" class="text-gray-300 text-sm hidden">
+                            <p>Content for Kitchen section will go here.</p>
+                        </div>
+                    </div>
+
+                    <!-- Utility -->
+                    <div class="border-t border-white">
+                        <button
+                            class="w-full flex justify-between items-center py-4 text-white text-lg font-semibold focus:outline-none"
+                            onclick="toggleAccordion('utility')">
+                            <span>UTILITY</span>
+                            <svg id="utilityIcon" class="w-6 h-6 transform transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="utility" class="text-gray-300 text-sm hidden">
+                            <p>Content for Utility section will go here.</p>
+                        </div>
+                    </div>
+
+                    <!-- Bedrooms -->
+                    <div class="border-t border-white">
+                        <button
+                            class="w-full flex justify-between items-center py-4 text-white text-lg font-semibold focus:outline-none"
+                            onclick="toggleAccordion('bedrooms')">
+                            <span>BEDROOMS</span>
+                            <svg id="bedroomsIcon" class="w-6 h-6 transform transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="bedrooms" class="text-gray-300 text-sm hidden">
+                            <p>Content for Bedrooms section will go here.</p>
+                        </div>
+                    </div>
+
+                    <!-- Bathrooms & WC -->
+                    <div class="border-t border-white">
+                        <button
+                            class="w-full flex justify-between items-center py-4 text-white text-lg font-semibold focus:outline-none"
+                            onclick="toggleAccordion('bathrooms')">
+                            <span>BATHROOMS & WC</span>
+                            <svg id="bathroomsIcon" class="w-6 h-6 transform transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="bathrooms" class="text-gray-300 text-sm hidden">
+                            <p>Content for Bathrooms & WC section will go here.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="w-full md:w-1/2 space-y-4">
+                    <!-- Electrical & Heating -->
+                    <div class="border-t border-white">
+                        <button
+                            class="w-full flex justify-between items-center py-4 text-white text-lg font-semibold focus:outline-none"
+                            onclick="toggleAccordion('electrical')">
+                            <span>ELECTRICAL & HEATING</span>
+                            <svg id="electricalIcon" class="w-6 h-6 transform transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="electrical" class="text-gray-300 text-sm hidden">
+                            <p>Content for Electrical & Heating section will go here.</p>
+                        </div>
+                    </div>
+
+                    <!-- Exterior Finishes -->
+                    <div class="border-t border-white">
+                        <button
+                            class="w-full flex justify-between items-center py-4 text-white text-lg font-semibold focus:outline-none"
+                            onclick="toggleAccordion('exterior')">
+                            <span>EXTERIOR FINISHES</span>
+                            <svg id="exteriorIcon" class="w-6 h-6 transform transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="exterior" class="text-gray-300 text-sm hidden">
+                            <p>Content for Exterior Finishes section will go here.</p>
+                        </div>
+                    </div>
+
+                    <!-- Home Automation & Security -->
+                    <div class="border-t border-white">
+                        <button
+                            class="w-full flex justify-between items-center py-4 text-white text-lg font-semibold focus:outline-none"
+                            onclick="toggleAccordion('homeAutomation')">
+                            <span>HOME AUTOMATION & SECURITY</span>
+                            <svg id="homeAutomationIcon" class="w-6 h-6 transform transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="homeAutomation" class="text-gray-300 text-sm hidden">
+                            <p>Content for Home Automation & Security section will go here.</p>
+                        </div>
+                    </div>
+
+                    <!-- Peace of Mind -->
+                    <div class="border-t border-white">
+                        <button
+                            class="w-full flex justify-between items-center py-4 text-white text-lg font-semibold focus:outline-none"
+                            onclick="toggleAccordion('peaceOfMind')">
+                            <span>PEACE OF MIND</span>
+                            <svg id="peaceOfMindIcon" class="w-6 h-6 transform transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="peaceOfMind" class="text-gray-300 text-sm hidden">
+                            <p>Content for Peace of Mind section will go here.</p>
+                        </div>
+                    </div>
+
+                    <!-- Disclaimer -->
+                    <div class="border-t border-white">
+                        <button
+                            class="w-full flex justify-between items-center py-4 text-white text-lg font-semibold focus:outline-none"
+                            onclick="toggleAccordion('disclaimer')">
+                            <span>DISCLAIMER</span>
+                            <svg id="disclaimerIcon" class="w-6 h-6 transform transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="disclaimer" class="text-gray-300 text-sm hidden">
+                            <p>*Show home features and fittings available by separate negotiation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <!-- Main Content -->
+            <div class="text-center">
+                <h2 class="text-4xl md:text-5xl font-light text-gray-800 mb-6">Smart Home Technology</h2>
+                <!-- Logo -->
+                <div class="flex justify-center mb-4">
+                    <img src="https://static.wixstatic.com/media/f3891e_6791bc1d02fc4145b89891f1a9bbf13f~mv2.png/v1/crop/x_3,y_0,w_810,h_257/fill/w_218,h_75,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Avande%20Logo.png"
+                        alt="Avande Select Logo" class="h-10" />
+                </div>
+                <p class="text-lg md:text-xl text-gray-800 max-w-3xl mx-auto mb-4">
+                    Your home comes with a unique portal called SELECT. Within the portal are the latest smart
+                    technology solutions designed specifically for your home.
+                </p>
+
+                <p class="text-sm md:text-base text-gray-500 max-w-2xl mx-auto mb-8">
+                    All the products on the Avande Select portal have been designed to work for your home. Your portal
+                    already knows the amount of lights, the circuits in your home, the measurements of windows and the
+                    mechanical systems. Whatever you choose is guaranteed to be compatible with your home. Avande Select
+                    is designed for you to be one click away from a smart home!
+                </p>
+
+                <!-- Button -->
+                <a href="#"
+                    class="inline-flex items-center px-6 py-3 bg-blue-500 text-white text-sm font-semibold rounded hover:bg-blue-600">
+                    View Smart Package
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-cover bg-center"
+        style="background-image: url('https://static.wixstatic.com/media/f3891e_02e1b2987342418da1fba28315a08b2b~mv2.png/v1/fill/w_1905,h_744,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/f3891e_02e1b2987342418da1fba28315a08b2b~mv2.png'); background-color: #4F4836;">
+        <div class="container mx-auto px-4">
+            <!-- Swiper Slider -->
+            <div class="swiper-container relative mb-12 overflow-hidden">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+                            alt="Living Room" class="w-full h-[500px] object-cover" />
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <img src="https://noithattugia.com/wp-content/uploads/2024/08/mau-nha-dep-anh-dai-dien-2024-scaled.jpg"
+                            alt="Bathroom" class="w-full h-[500px] object-cover" />
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <img src="https://xaydunganthienphat.com.vn/upload/filemanager/mau%20nha/mau%20nha%20cap%204%20mai%20thai%203%20phong%20ngu/mau-nha-cap-4-mai-thai-3-phong-ngu-1-phong-tho-mau-so-2.jpg"
+                            alt="Study Room" class="w-full h-[500px] object-cover" />
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide">
+                        <img src="https://xaydunganthienphat.com.vn/upload/filemanager/mau%20nha/mau%20nha%20cap%204%20mai%20thai%203%20phong%20ngu/mau-nha-cap-4-mai-thai-3-phong-ngu-1-phong-tho-mau-so-2.jpg"
+                            alt="Study Room" class="w-full h-[500px] object-cover" />
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="swiper-slide">
+                        <img src="https://xaydunganthienphat.com.vn/upload/filemanager/mau%20nha/mau%20nha%20cap%204%20mai%20thai%203%20phong%20ngu/mau-nha-cap-4-mai-thai-3-phong-ngu-1-phong-tho-mau-so-2.jpg"
+                            alt="Study Room" class="w-full h-[500px] object-cover" />
+                    </div>
+                    <!-- Slide 6 -->
+                    <div class="swiper-slide">
+                        <img src="https://xaydunganthienphat.com.vn/upload/filemanager/mau%20nha/mau%20nha%20cap%204%20mai%20thai%203%20phong%20ngu/mau-nha-cap-4-mai-thai-3-phong-ngu-1-phong-tho-mau-so-2.jpg"
+                            alt="Study Room" class="w-full h-[500px] object-cover" />
+                    </div>
+                </div>
+                <!-- Add Navigation -->
+                <div class="swiper-button-next text-white bg-black rounded-full p-3"></div>
+                <div class="swiper-button-prev text-white bg-black rounded-full p-3"></div>
+            </div>
+
+            <!-- Banner -->
+            <div class="text-center py-24">
+                <h2 class="text-4xl md:text-5xl font-light text-white uppercase tracking-wide">
+                    Your Home, <br /> Your Sanctuary, <br /> Your Piece of Perfection
+                </h2>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="min-h-screen bg-cover bg-center relative"
+        style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')">
+        <!-- Overlay with text and button -->
+        <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full md:w-1/3 h-auto bg-opacity-90 bg-[#D9C6C0] p-8 md:p-16 flex flex-col justify-center items-center text-center">
+            <p class="text-gray-600 text-sm mb-4">Want to Know More?</p>
+            <img src="https://static.wixstatic.com/media/8226c2_ecfddca7329d4978a3c563d2fe0c447d~mv2.png/v1/fill/w_262,h_381,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8226c2_ecfddca7329d4978a3c563d2fe0c447d~mv2.png"
+                alt="Brochure" class="w-48 mb-6" />
+            <h2 class="text-2xl md:text-3xl text-gray-800 font-semibold mb-4">Register Your Interest</h2>
+            <p class="text-gray-600 text-sm mb-6">
+                Fill in your details to receive our brochure and someone from the team will get back to you.
+            </p>
+            <button id="openModalBtn" class="text-gray-800 flex items-center hover:text-gray-600">
+                Register Now <span class="ml-2">→</span>
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-white p-6 md:p-12 w-full max-w-lg relative">
+                <!-- Close button -->
+                <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+                <!-- Form -->
+                <h2 class="text-2xl md:text-3xl text-gray-800 font-semibold mb-6">Register Your Interest</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-600 text-sm mb-2" for="firstName">First Name *</label>
+                        <input type="text" id="firstName"
+                            class="w-full border-b border-gray-300 p-2 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 text-sm mb-2" for="lastName">Last Name *</label>
+                        <input type="text" id="lastName"
+                            class="w-full border-b border-gray-300 p-2 focus:outline-none" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-600 text-sm mb-2" for="email">Email *</label>
+                        <input type="email" id="email" class="w-full border-b border-gray-300 p-2 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 text-sm mb-2" for="phone">Phone *</label>
+                        <input type="tel" id="phone" class="w-full border-b border-gray-300 p-2 focus:outline-none" />
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-600 text-sm mb-2" for="interest">I am interested in *</label>
+                    <select id="interest" class="w-full border-b border-gray-300 p-2 focus:outline-none">
+                        <option value="">Select an option</option>
+                        <option value="detached">A detached home</option>
+                        <option value="semi-detached">A semi-detached home</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-600 text-sm mb-2" for="message">Message</label>
+                    <textarea id="message" class="w-full border-b border-gray-300 p-2 focus:outline-none"
+                        rows="3"></textarea>
+                </div>
+                <button class="w-full bg-[#D9C6C0] text-gray-800 py-2 hover:bg-opacity-90">Submit</button>
+            </div>
+        </div>
+    </section>
+    <footer class="py-12" style="background-color: #3D4B4E;">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-gray-300 text-sm font-serif mb-4 md:mb-0">
+                BEAUPROPERTY
+            </div>
+            <div class="text-gray-300 text-sm text-center mb-4 md:mb-0">
+                Whitecroft Gardens, London Road, Southborough, TN4 0RQ
+            </div>
+            <div class="text-gray-300 text-sm flex space-x-4">
+                <a href="#" class="hover:text-gray-100">WEBSITE</a>
+                <a href="#" class="hover:text-gray-100">BRANDING AND CGIS BY ADEMCHIC</a>
+                <a href="#" class="hover:text-gray-100">PRIVACY POLICY</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        window.addEventListener("scroll", () => {
+            const header = document.getElementById("header");
+            if (window.scrollY > 50) {
+                header.classList.add("header-scrolled");
+            } else {
+                header.classList.remove("header-scrolled");
+            }
+        });
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modal = document.getElementById('registerModal');
+
+        openModalBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        function vrTour() {
+            return {
+                viewer: null,
+                autoRotate: false,
+                scenes: [
+                    {
+                        id: 'scene1',
+                        panorama: './assets/asd123.jpg',
+                        thumb: './assets/asd123.jpg',
+                        hotspots: [
+                            { pitch: 10, yaw: 100, targetSceneId: 'scene2' },
+                            { pitch: -5, yaw: -30, targetSceneId: 'scene3' }
+                        ]
+                    },
+                    {
+                        id: 'scene2',
+                        panorama: './assets/qwe123.jpg',
+                        thumb: './assets/qwe123.jpg',
+                        hotspots: [
+                            { pitch: 0, yaw: 0, targetSceneId: 'scene1' },
+                            { pitch: -10, yaw: 80, targetSceneId: 'scene3' }
+                        ]
+                    },
+                    {
+                        id: 'scene3',
+                        panorama: './assets/aaa.jpg',
+                        thumb: './assets/aaa.jpg',
+                        hotspots: [
+                            { pitch: 5, yaw: -80, targetSceneId: 'scene1' },
+                            { pitch: -5, yaw: 30, targetSceneId: 'scene2' }
+                        ]
+                    },
+                ],
+                init() {
+                    const scenesConfig = {};
+                    this.scenes.forEach(scene => {
+                        scenesConfig[scene.id] = {
+                            type: "equirectangular",
+                            panorama: scene.panorama,
+                            hotSpots: scene.hotspots.map(h => ({
+                                pitch: h.pitch,
+                                yaw: h.yaw,
+                                type: "scene",
+                                text: "Go to " + h.targetSceneId,
+                                sceneId: h.targetSceneId
+                            }))
+                        };
+                    });
+
+                    this.viewer = pannellum.viewer('panorama', {
+                        default: {
+                            firstScene: 'scene1',
+                            author: "Your Company",
+                            autoLoad: true,
+                            showControls: true,
+                        },
+                        scenes: scenesConfig
+                    });
+                },
+                loadScene(sceneId) {
+                    this.viewer.loadScene(sceneId);
+                },
+                toggleAutoRotate() {
+                    if (this.autoRotate) {
+                        this.viewer.stopAutoRotate();
+                    } else {
+                        this.viewer.startAutoRotate(-2);
+                    }
+                    this.autoRotate = !this.autoRotate;
+                },
+                resetView() {
+                    this.viewer.setPitch(0);
+                    this.viewer.setYaw(0);
+                    this.viewer.setHfov(100);
+                }
+            }
+        }
+        function toggleAccordion(sectionId) {
+            const content = document.getElementById(sectionId);
+            const icon = document.getElementById(sectionId + 'Icon');
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1, // Show only 1 full slide
+            spaceBetween: 20, // Reduce space between slides
+            centeredSlides: true, // Center the active slide
+            loop: true, // Enable loop
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        function togglePopup() {
+            const popup = document.getElementById('enquire-popup');
+            popup.classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>
+<style>
+    .swiper-button-next,
+    .swiper-button-prev {
+        color: #fff !important;
+        /* White color for arrows */
+        opacity: 1 !important;
+        /* Ensure buttons are fully visible */
+        width: 40px !important;
+        /* Set width for circular button */
+        height: 40px !important;
+        /* Set height for circular button */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 16px !important;
+        /* Adjust arrow size to fit within circle */
+    }
+
+    .swiper-container {
+        max-width: 100%;
+        /* Ensure swiper doesn't exceed container width */
+    }
+
+    .swiper-slide {
+        width: 100% !important;
+        /* Ensure slides fit within container */
+    }
+
+    @media (max-width: 767px) {
+        #enquire-popup {
+            align-items: center;
+            justify-content: center;
+        }
+
+        #enquire-popup>div {
+            margin: 0 1rem;
+            height: auto;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+    }
+
+    @media (min-width: 768px) {
+        #enquire-popup>div {
+            margin-right: 0;
+            height: 100%;
+        }
+    }
+</style>

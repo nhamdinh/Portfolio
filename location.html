@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whitecroft Gardens</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        .header-scrolled {
+            background-color: #3D4B4E;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #panorama {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 w-full z-10 transition-all duration-300" x-data="{ open: false }">
+        <div class="py-4 px-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex flex-col items-center justify-center text-white">
+                <div class="text-2xl font-serif tracking-wide">WHITECROFT</div>
+                <div class="text-2xl font-serif tracking-wide">GARDENS</div>
+            </div>
+
+            <!-- Desktop Navbar -->
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a href="#" class="text-brown-500 hover:text-brown-600">Location</a>
+                <a href="./schools.html" class="text-brown-500 hover:text-brown-600">Schools</a>
+                <a href="./interios.html" class="text-brown-500 hover:text-brown-600">Interiors</a>
+                <a href="./floorplans.html" class="text-brown-500 hover:text-brown-600">Floorplans</a>
+                <a href="javascript:void(0)" class="text-brown-500 hover:text-brown-600"
+                    onclick="togglePopup()">Enquire</a>
+                <a href="https://instagram.com" target="_blank" class="text-brown-500 hover:text-brown-600">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M7.75 2C4.45 2 2 4.45 2 7.75v8.5C2 19.55 4.45 22 7.75 22h8.5c3.3 0 5.75-2.45 5.75-5.75v-8.5C22 4.45 19.55 2 16.25 2h-8.5zM12 8a4 4 0 110 8 4 4 0 010-8zm5.25-.75a1 1 0 110 2 1 1 0 010-2zM12 9.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z" />
+                    </svg>
+                </a>
+            </nav>
+
+            <!-- Mobile Button -->
+            <button class="md:hidden text-white" @click="open = !open">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+            <div id="enquire-popup"
+                class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center md:justify-end z-50">
+                <div class="bg-[#3D4B4E] w-full max-w-md p-6 relative md:mr-0 md:h-full md:max-w-sm">
+                    <!-- Close Button -->
+                    <button onclick="togglePopup()" class="absolute top-4 right-4 text-white text-xl">&times;</button>
+
+                    <!-- Form -->
+                    <h2 class="text-white text-2xl font-light mb-6">Register Your Interest</h2>
+                    <div class="space-y-4">
+                        <input type="text" placeholder="First name *"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none" />
+                        <input type="text" placeholder="Last name *"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none" />
+                        <input type="email" placeholder="Email *"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none" />
+                        <input type="tel" placeholder="Phone *"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none" />
+                        <div class="space-y-2">
+                            <label class="flex items-center text-white">
+                                <input type="checkbox" class="mr-2" />
+                                I am interested in a detached home
+                            </label>
+                            <label class="flex items-center text-white">
+                                <input type="checkbox" class="mr-2" />
+                                I am interested in a semi-detached home
+                            </label>
+                        </div>
+                        <textarea placeholder="Message"
+                            class="w-full p-2 bg-transparent border-b border-gray-400 text-white placeholder-gray-300 focus:outline-none resize-none"
+                            rows="3"></textarea>
+                        <button class="w-full py-2 bg-[#D4BFA7] text-white uppercase tracking-wide">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div x-show="open" x-transition:enter="transition transform duration-700 ease-in-out"
+            x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition transform duration-700 ease-in-out" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="-translate-x-full" class="md:hidden px-4 pb-4 space-y-2">
+            <a href="#" class="block text-brown-500 hover:text-brown-600 text-center">Location</a>
+            <a href="./schools.html" class="block text-brown-500 hover:text-brown-600 text-center">Schools</a>
+            <a href="./interios.html" class="block text-brown-500 hover:text-brown-600 text-center">Interiors</a>
+            <a href="./floorplans.html" class="block text-brown-500 hover:text-brown-600 text-center">Floorplans</a>
+            <a href="javascript:void(0)" class="block text-white hover:text-gray-300 text-center text-lg"
+                onclick="togglePopup()">Enquire</a>
+            <!-- Instagram item -->
+            <div class="flex items-center justify-center space-x-2 text-brown-500 hover:text-brown-600">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M7.75 2C4.45 2 2 4.45 2 7.75v8.5C2 19.55 4.45 22 7.75 22h8.5c3.3 0 5.75-2.45 5.75-5.75v-8.5C22 4.45 19.55 2 16.25 2h-8.5zM12 8a4 4 0 110 8 4 4 0 010-8zm5.25-.75a1 1 0 110 2 1 1 0 010-2zM12 9.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z" />
+                </svg>
+                <a href="https://instagram.com" target="_blank" class="hover:underline">Instagram</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Banner 1 -->
+    <section class="h-screen flex flex-col md:flex-row">
+        <div class="w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center bg-gray-100 relative">
+            <div class="text-center p-6">
+                <div class="text-center p-6">
+                    <h1 class="text-5xl md:text-6xl font-light text-gray-800 mb-4">
+                        Location
+                    </h1>
+                    <p class="text-xl md:text-2xl font-light text-gray-800 mb-4">
+                        Whitecroft Gardens, London
+                    </p>
+                    <p class="text-xl md:text-2xl font-light text-gray-800 mb-4">
+                        Road, Southborough, TN4 0RQ
+                    </p>
+                </div>
+            </div>
+            <div class="absolute inset-0 opacity-20">
+                <img src="https://static.wixstatic.com/media/8226c2_dbe52b2bcc9242b3838556c748307ed8~mv2.png/v1/fill/w_953,h_919,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Shape%201.png"
+                    alt="Interior" class="w-full h-full object-cover" />
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 h-1/2 md:h-full">
+            <img src="https://static.wixstatic.com/media/f3891e_7e3f2893e9204fe19900df5615820c26~mv2.jpg/v1/fill/w_953,h_919,fp_0.41_0.44,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/edit%20pexels-anastasia-shuraeva-7671246%20copy.jpg"
+                alt="Interior" class="w-full h-full object-cover" />
+        </div>
+
+    </section>
+
+    <!-- Banner 1.6 -->
+    <section class="min-h-screen flex flex-col md:flex-row items-center bg-white py-12">
+        <div class="w-full md:w-1/2 p-4 md:p-12">
+            <h2 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
+                A charming haven where one can thrive, wander, and weave enduring memories.
+            </h2>
+            <p class="text-gray-600 text-sm md:text-base">
+                Located in the picturesque Kentish town of Southborough, future homeowners will find themselves
+                immersed in the local conservation area, surrounded by rolling countryside and green woodlands. Just
+                a stone’s throw away, the charming high street embodies the quintessential English village lifestyle
+                with its boutique shops, artisanal cafés, and local pubs.
+
+                The vibrant spa town of Royal Tunbridge Wells is merely a 10-minute drive away, offering an
+                abundance of cultural attractions, retail therapy, and a diverse culinary scene to satisfy every
+                palate. With excellent rail connections, London commuters can reach the city in less than an hour,
+                seamlessly blending the best of rural tranquillity with urban accessibility.
+            </p>
+        </div>
+        <div class="w-full md:w-1/2 min-h-screen">
+            <img src="https://static.wixstatic.com/media/f3891e_34f3a0c7a2024a978054f1b88919b795~mv2.jpg/v1/fill/w_953,h_991,fp_0.30_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Village%20Green%20Cricket%20in%20Kent%20England-min.jpg"
+                alt="Bedroom" class="w-full h-full object-cover object-center" />
+        </div>
+    </section>
+    <section class="min-h-screen flex flex-col md:flex-row items-center bg-white py-12">
+        <div class="w-full md:w-1/2 p-4 md:p-5">
+            <img src="https://static.wixstatic.com/media/f3891e_e23408e5419a4b159b85ad9e35e80392~mv2.jpg/v1/crop/x_1723,y_0,w_3219,h_3787/fill/w_900,h_1058,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/pexels-mart-production-7251101.jpg"
+                alt="Bedroom" class="w-full object-cover" />
+            <p class="text-gray-500 text-xs md:text-sm mt-4 italic">
+                Step into the epitome of rest and relaxation, where each bedroom has
+                been designed to maximise comfort and luxury. Primary suites boast
+                spacious walk-in dressing areas and en-suite bathrooms, enhancing both
+                convenience and sophistication. Each primary bedroom is adorned with
+                bespoke wardrobes and selected bedrooms have special accents in such
+                as bespoke wallpaper and fluted panelled walls, complemented by plush,
+                soft carpeting.
+            </p>
+        </div>
+        <div class="w-full md:w-1/2 p-4 md:p-5 flex flex-col">
+            <p class="text-gray-500 text-xs md:text-sm mt-4 italic">
+                Step into the epitome of rest and relaxation, where each bedroom has
+                been designed to maximise comfort and luxury. Primary suites boast
+                spacious walk-in dressing areas and en-suite bathrooms, enhancing both
+                convenience and sophistication. Each primary bedroom is adorned with
+                bespoke wardrobes and selected bedrooms have special accents in such
+                as bespoke wallpaper and fluted panelled walls, complemented by plush,
+                soft carpeting.
+            </p>
+            <img src="https://static.wixstatic.com/media/f3891e_e9c2d3924a624967bc96b187874dde12~mv2.jpg/v1/fill/w_741,h_926,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/pexels-davideibiza-1739748-min.jpg"
+                alt="Bedroom" class="w-full object-cover mt-4" />
+        </div>
+    </section>
+    <section class="min-h-screen flex flex-col md:flex-row">
+        <div class="w-full md:w-1/2 p-6 md:p-12 min-h-screen" style="background-color: #3D4B4E;">
+            <h2 class="text-4xl md:text-5xl text-white font-light mb-8">Areas of Interest</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg text-white font-semibold mb-4">Eating & Drinking</h3>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                        <li>1. The Imperial</li>
+                        <li>2. The Kentish Hare</li>
+                        <li>3. Verdigris</li>
+                        <li>4. Tallow</li>
+                        <li>5. Hand & Sceptre</li>
+                        <li>6. Kingdom</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg text-white font-semibold mb-4">Health & Wellness</h3>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                        <li>20. Tunbridge Wells Hospital</li>
+                        <li>21. Nuffield Health</li>
+                        <li>22. Tunbridge Cottage Hospital</li>
+                        <li>23. St Andrews Medical Centre</li>
+                        <li>24. Nuffield Health - Fitness & Wellbeing Gym</li>
+                        <li>25. Crossfit Tunbridge Wells</li>
+                        <li>26. The Shred Quarters Gym Tunbridge Wells</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg text-white font-semibold mb-4">Shopping</h3>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                        <li>7. The Pantiles</li>
+                        <li>8. Royal Tunbridge Wells High Street</li>
+                        <li>9. Royal Victoria Place</li>
+                        <li>10. Tesco Express</li>
+                        <li>11. Waitrose Tunbridge</li>
+                        <li>12. Little Waitrose Tonbridge</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg text-white font-semibold mb-4">Sports & Outdoors</h3>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                        <li>13. Southborough Common</li>
+                        <li>14. Bidborough Cricket Club</li>
+                        <li>15. Grosvenor & Hilbert Park</li>
+                        <li>16. Tunbridge Wells Sports Centre</li>
+                        <li>17. Tunbridge Wells Football Club</li>
+                        <li>18. Dunorlan Park</li>
+                        <li>19. Tonbridge Castle</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg text-white font-semibold mb-4">Transport</h3>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                        <li>27. Tunbridge Wells Rail Station</li>
+                        <li>28. High Brooms Rail Station</li>
+                        <li>29. Tonbridge Rail Station</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 min-h-screen" style="background-color: #3D4B4E;">
+            <img src="https://static.wixstatic.com/media/f3891e_cdeb74c614d849548c0a24e19e36601a~mv2.png/v1/crop/x_201,y_117,w_4505,h_3314/fill/w_1210,h_891,fp_0.50_0.50,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Map%20clear.png"
+                alt="Map" class="w-full h-full object-cover" />
+        </div>
+    </section>
+    <section class="min-h-screen bg-cover bg-center relative"
+        style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')">
+        <!-- Overlay with text and button -->
+        <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full md:w-1/3 h-auto bg-opacity-90 bg-[#D9C6C0] p-8 md:p-16 flex flex-col justify-center items-center text-center">
+            <p class="text-gray-600 text-sm mb-4">Want to Know More?</p>
+            <img src="https://static.wixstatic.com/media/8226c2_ecfddca7329d4978a3c563d2fe0c447d~mv2.png/v1/fill/w_262,h_381,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8226c2_ecfddca7329d4978a3c563d2fe0c447d~mv2.png"
+                alt="Brochure" class="w-48 mb-6" />
+            <h2 class="text-2xl md:text-3xl text-gray-800 font-semibold mb-4">Register Your Interest</h2>
+            <p class="text-gray-600 text-sm mb-6">
+                Fill in your details to receive our brochure and someone from the team will get back to you.
+            </p>
+            <button id="openModalBtn" class="text-gray-800 flex items-center hover:text-gray-600">
+                Register Now <span class="ml-2">→</span>
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-white p-6 md:p-12 w-full max-w-lg relative">
+                <!-- Close button -->
+                <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+                <!-- Form -->
+                <h2 class="text-2xl md:text-3xl text-gray-800 font-semibold mb-6">Register Your Interest</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-600 text-sm mb-2" for="firstName">First Name *</label>
+                        <input type="text" id="firstName"
+                            class="w-full border-b border-gray-300 p-2 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 text-sm mb-2" for="lastName">Last Name *</label>
+                        <input type="text" id="lastName"
+                            class="w-full border-b border-gray-300 p-2 focus:outline-none" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-600 text-sm mb-2" for="email">Email *</label>
+                        <input type="email" id="email" class="w-full border-b border-gray-300 p-2 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 text-sm mb-2" for="phone">Phone *</label>
+                        <input type="tel" id="phone" class="w-full border-b border-gray-300 p-2 focus:outline-none" />
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-600 text-sm mb-2" for="interest">I am interested in *</label>
+                    <select id="interest" class="w-full border-b border-gray-300 p-2 focus:outline-none">
+                        <option value="">Select an option</option>
+                        <option value="detached">A detached home</option>
+                        <option value="semi-detached">A semi-detached home</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-600 text-sm mb-2" for="message">Message</label>
+                    <textarea id="message" class="w-full border-b border-gray-300 p-2 focus:outline-none"
+                        rows="3"></textarea>
+                </div>
+                <button class="w-full bg-[#D9C6C0] text-gray-800 py-2 hover:bg-opacity-90">Submit</button>
+            </div>
+        </div>
+    </section>
+    <footer class="py-12" style="background-color: #3D4B4E;">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-gray-300 text-sm font-serif mb-4 md:mb-0">
+                BEAUPROPERTY
+            </div>
+            <div class="text-gray-300 text-sm text-center mb-4 md:mb-0">
+                Whitecroft Gardens, London Road, Southborough, TN4 0RQ
+            </div>
+            <div class="text-gray-300 text-sm flex space-x-4">
+                <a href="#" class="hover:text-gray-100">WEBSITE</a>
+                <a href="#" class="hover:text-gray-100">BRANDING AND CGIS BY ADEMCHIC</a>
+                <a href="#" class="hover:text-gray-100">PRIVACY POLICY</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        window.addEventListener("scroll", () => {
+            const header = document.getElementById("header");
+            if (window.scrollY > 50) {
+                header.classList.add("header-scrolled");
+            } else {
+                header.classList.remove("header-scrolled");
+            }
+        });
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modal = document.getElementById('registerModal');
+
+        openModalBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+        function togglePopup() {
+            const popup = document.getElementById('enquire-popup');
+            popup.classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>
+<style>
+    @media (max-width: 767px) {
+        #enquire-popup {
+            align-items: center;
+            justify-content: center;
+        }
+
+        #enquire-popup>div {
+            margin: 0 1rem;
+            height: auto;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+    }
+
+    @media (min-width: 768px) {
+        #enquire-popup>div {
+            margin-right: 0;
+            height: 100%;
+        }
+    }
+</style>
